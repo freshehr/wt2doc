@@ -1,0 +1,285 @@
+= ReSPECT-3
+
+
+== Metadata
+
+
+TemplateId:: EA - ReSPECT-3.v0
+
+
+Archetype:: openEHR-EHR-COMPOSITION.report.v1
+
+
+Root name:: ReSPECT-3
+
+
+
+
+// Not supported rmType COMPOSITION
+=== Context
+===== `EVENT_CONTEXT: _RM:context_`
+[options="header", cols="3,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|at0005| 0..1| DV_TEXT | Status
+a|
+* Started
+* Partially complete
+* Complete and signed
+5+a|*XDS Metadata* +
+ `CLUSTER: _openEHR-EHR-CLUSTER.xds_metadata.v0_`
+|at0001| 0..1| DV_TEXT | Author specialty
+a|
+|at0003| 0..1| DV_CODED_TEXT | Document type
+a|
+
+
+for example:  Pulmonary History and Physical, Discharge Summary, Ultrasound Report.
+These codes are specific to an XDS Affinity Domain.
+|RM: start_time| 1..1| DV_DATE_TIME | Start_time
+|
+|RM: setting| 1..1| DV_CODED_TEXT | Setting
+a|
+|====
+== ReSPECT headings
+== 2. Shared understanding
+=== ReSPECT Summary
+===== `EVALUATION: _openEHR-EHR-EVALUATION.clinical_synopsis.v1_`
+[options="header", cols="3,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|at0002| 1..1| DV_TEXT | Narrative Summary
+a|
+// Not supported rmType PARTY_PROXY
+|====
+== Details of other relevant care planning documents and where to find them
+=== Advance planning document
+===== `EVALUATION: _openEHR-EHR-EVALUATION.advance_care_directive.v1_`
+[options="header", cols="3,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|at0006| 0..1| DV_TEXT | Description
+a|
+
+
+May be used to record a narrative overview of the complete advance care directive, which may or may not be supported by structured data. Details of specific structured findings can be included using CLUSTER archetypes in the 'Directive details' slot. This data element may be used to capture legacy data that is not available in a structured format.
+5+a|*Directive location* +
+ `CLUSTER: _at0058_`
+|at0030| 0..1| DV_TEXT | Location
+a|
+
+
+For example, 'In the top drawer of the bedside table'.
+// Not supported rmType PARTY_PROXY
+|====
+== Legal welfare proxies
+=== Legal welfare proxy in place
+===== `ADMIN_ENTRY: _openEHR-EHR-ADMIN_ENTRY.legal_authority.v0_`
+[options="header", cols="3,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|at0002| 0..1| DV_TEXT | Type
+a|
+
+
+Coding of the type of legal directive or order with a terminology is preferred, where possible. It is expected that this is largely localised to reflect local policy and legislation. For example, 'Welfare Power of Attorney', 'Welfare Guardianship Order' or 'Emergency Detention Order'.
+|at0004| 0..1| DV_CODED_TEXT | Status
+a|
+* at0005 -> Present 
+* at0006 -> Absent 
+* at0007 -> Unknown 
+* _Other text allowed_
+
+
+Coding of the legal directive or order status with a terminology is preferred, where possible.
+// Not supported rmType PARTY_PROXY
+|====
+== 3. What matters to me
+=== What matters to me
+===== `EVALUATION: _openEHR-EHR-EVALUATION.about_me.v0_`
+[options="header", cols="3,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|at0002| 0..1| DV_TEXT | What I most value
+a|
+|at0002| 0..1| DV_TEXT | What I most fear / wish to avoid
+a|
+// Not supported rmType PARTY_PROXY
+|====
+== 4. Clinical recommendations
+=== Recommendation
+===== `EVALUATION: _openEHR-EHR-EVALUATION.recommendation.v1_`
+[options="header", cols="3,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|at0006| 0..1| DV_TEXT | Topic
+a|
+
+
+Useful if multiple types of recommendations are made at the same time, and within the same data set.
+|at0002| 0..1| DV_TEXT | Clinical focus
+a|
+* Prioritise extending life
+* Balance extending life with comfort and valued outcomes
+* Prioritise comfort
+
+
+May be coded, using a terminology, if required.
+|at0003| 0..1| DV_TEXT | Clinical guidance on interventions
+a|
+
+
+
+// Not supported rmType PARTY_PROXY
+|====
+=== CPR decision
+===== `EVALUATION: _openEHR-EHR-EVALUATION.cpr_decision_uk.v0_`
+[options="header", cols="3,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|at0003| 0..1| DV_CODED_TEXT | CPR decision
+a|
+* at0004 -> CPR attempts recommended adult or child 
+* at0005 -> CPR attempts not recommended adult or child. 
+* at0022 -> CPR decision status unknown 
+* at0027 -> For modified CPR child only 
+|at0002| 0..1| DV_DATE_TIME | Date of CPR decision
+|
+// Not supported rmType PARTY_PROXY
+|====
+== 5. Capacity for involvement
+=== Mental capacity
+===== `EVALUATION: _openEHR-EHR-EVALUATION.mental_capacity.v0_`
+[options="header", cols="3,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|at0009| 0..1| DV_TEXT | Decision/plan
+a|
+|at0002| 0..1| DV_CODED_TEXT | Does the person have capacity to participate in making recommendations on this plan?
+a|
+* at0003 -> Has capacity 
+* at0004 -> Does not have capacity 
+|at0006| 0..1| DV_TEXT | If no, in what way does this person lack capacity?
+a|
+// Not supported rmType PARTY_PROXY
+|====
+== 6. Involvement in making plan
+=== ReSPECT involvement
+===== `ADMIN_ENTRY: _openEHR-EHR-ADMIN_ENTRY.respect_involvement.v0_`
+[options="header", cols="3,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+5+a|*Involvement in recommendations* +
+ `CLUSTER: _at0012_`
+|at0002| 0..*| DV_CODED_TEXT | Involvement
+a|
+* at0003 -> A Person has mental capacity 
+* at0004 -> B Person does not have mental capacity 
+* at0005 -> C1 Person less than 18 or 16 with sufficient maturity 
+* at0010 -> C2 Person less than 18 or 16 without sufficient maturity 
+* at0011 -> C3 Person less than 18 or 16 parental decision 
+|at0007| 0..1| DV_TEXT | Option D
+a|
+
+
+Additional implementation guidance: in an electronic format, if someone selects D we could have a line coming up explaining that the only legal reasons for selecting D are:
+1. if the physician thinks it would cause the patient physiological or psychological harm
+2. if the patient lacks capacity, and it is not practicable or appropriate to contact those close to them.
+If C1 or C2 has been selected without selecting C3, please document why involvement of those holding parental responsibility has not been possible.
+// Not supported rmType PARTY_PROXY
+|====
+== 7. Clinician signatures
+=== Clinician signature
+===== `ACTION: _openEHR-EHR-ACTION.service.v0_`
+[options="header", cols="3,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|RM: current_state| 1..1| DV_CODED_TEXT | Current_state
+a|
+* 532 -> undefined 
+|RM: transition| 0..1| DV_CODED_TEXT | Transition
+a|
+|RM: careflow_step| 0..1| DV_CODED_TEXT | Careflow_step
+a|
+* at0005 -> Service activity complete 
+|at0011| 0..1| DV_TEXT | Service name
+a|
+* ReSPECT - clinician signature
+* ReSPECT - senior responsible clinician signature
+
+
+Coding of the specific service name with a terminology is preferred, where possible.
+|RM: time| 1..1| DV_DATE_TIME | Time
+|
+
+
+
+// Not supported rmType PARTY_PROXY
+|====
+== 8. Emergency contacts
+=== Emergency contacts
+===== `ADMIN_ENTRY: _openEHR-EHR-ADMIN_ENTRY.care_team.v0_`
+[options="header", cols="3,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+5+a|*Care team* +
+ `CLUSTER: _openEHR-EHR-CLUSTER.care_team.v0_`
+|at0018| 0..1| DV_TEXT | Name
+a|
+* ReSPECT Emergency contacts
+
+
+E.g. the "red" vs. "green" trauma teams.
+5+a|*Participant* +
+ `CLUSTER: _at0021_`
+|at0022| 0..*| DV_TEXT | Role and Relationship
+a|
+* Primary emergency contact
+* _Other text allowed_
+5+a|*Member* +
+ `CLUSTER: _openEHR-EHR-CLUSTER.contact_cc.v0_`
+5+a|*Name* +
+ `CLUSTER: _openEHR-EHR-CLUSTER.name_cc.v0_`
+|at0001| 1..1| DV_CODED_TEXT | Use
+a|
+* at0002 -> Usual 
+|at0009| 0..1| DV_TEXT | Contact name
+a|
+5+a|*Telephone* +
+ `CLUSTER: _openEHR-EHR-CLUSTER.telecom_cc.v0_`
+|at0001| 0..1| DV_CODED_TEXT | System
+a|
+* at0012 -> Phone 
+|at0002| 0..1| DV_TEXT | Telephone number
+a|
+|at0030| 0..1| DV_TEXT | Other details about contact
+a|
+// Not supported rmType PARTY_PROXY
+|====
+== 9. Review of Plan
+=== Review of plan
+===== `ACTION: _openEHR-EHR-ACTION.service.v0_`
+[options="header", cols="3,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|RM: current_state| 1..1| DV_CODED_TEXT | Current_state
+a|
+* 532 -> undefined 
+|RM: transition| 0..1| DV_CODED_TEXT | Transition
+a|
+|RM: careflow_step| 0..1| DV_CODED_TEXT | Careflow_step
+a|
+* at0005 -> Service activity complete 
+|at0011| 0..1| DV_TEXT | Service name
+a|
+
+
+Coding of the specific service name with a terminology is preferred, where possible.
+|RM: time| 1..1| DV_DATE_TIME | Time
+|
+
+
+
+// Not supported rmType PARTY_PROXY
+|====
+// Not supported rmType PARTY_PROXY
