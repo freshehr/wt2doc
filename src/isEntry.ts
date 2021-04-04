@@ -1,5 +1,5 @@
 export function isEntry(rmType: string) {
-  return ['OBSERVATION', 'EVALUATION', 'INSTRUCTION', 'ACTION'].includes(rmType);
+  return ['OBSERVATION', 'EVALUATION', 'INSTRUCTION', 'ACTION', 'ADMIN_ENTRY'].includes(rmType);
 }
 export function isSection(rmType: string) {
   return ['SECTION'].includes(rmType);

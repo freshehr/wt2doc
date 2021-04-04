@@ -1,6 +1,11 @@
 = Koloskopi_journal
 // Not supported rmType COMPOSITION
 // Not supported rmType EVENT_CONTEXT
+
+
+Ian says - do this
+
+
 | 1..1|DV_DATE_TIME | Start_time
 |
 | 1..1|DV_CODED_TEXT | Setting
@@ -61,7 +66,7 @@ a|
 |
 
 
-Kalkuleres automatisk og er skjult for bruker. 
+Kalkuleres automatisk og er skjult for bruker.
 // Not supported rmType CLUSTER
 | 0..1|DV_CODED_TEXT | Komplikasjoner under undersøkelsen
 a|
@@ -120,17 +125,17 @@ a|
 * Annet (local_terms: 99)
 
 
-Strukturert registrering av begrunnelse. Som definert av Tarmscreening. 
+Strukturert registrering av begrunnelse. Som definert av Tarmscreening.
 | 0..1|DV_TEXT | Begrunnelse - annet
 a|
 
 
-Strukturert registrering av begrunnelse. Som definert av Tarmscreening. 
+Strukturert registrering av begrunnelse. Som definert av Tarmscreening.
 | 0..1|DV_TEXT | Indikasjon
 a|
 
 
-Strukturert registrering av begrunnelse. Som definert av Tarmscreening. 
+Strukturert registrering av begrunnelse. Som definert av Tarmscreening.
 | 1..1|DV_DATE_TIME | Time
 |
 // Not supported rmType CODE_PHRASE
@@ -149,7 +154,7 @@ a|
 * Annet
 
 
-NB! Har ikke funnet kodeverk for disse legemidlene. 
+NB! Har ikke funnet kodeverk for disse legemidlene.
 // Not supported rmType CLUSTER
 | 0..*|DV_TEXT | Administreringsmetode
 a|
@@ -184,9 +189,9 @@ a|
 * Andre medisiner (SNOMED-CT: 74964007)
 
 
-Angir legemidler som gir økt risiko for blødning. 
+Angir legemidler som gir økt risiko for blødning.
 
-Dersom Wafarin skal det angis megnde og siste dato tatt. 
+Dersom Wafarin skal det angis megnde og siste dato tatt.
 | 0..1|DV_CODED_TEXT | Tilstedeværelse
 a|
 * Tilstede (local: at0018)
@@ -398,7 +403,7 @@ a|
 * Ikke aktuelt (local: at0036)
 
 
-Vurderes flyttet til egen struktur siden det er en generell vurdering ved en eller flere cancer suspekte lesjon. Kan skje flytte til ACTION.procedure eller FUNN 
+Vurderes flyttet til egen struktur siden det er en generell vurdering ved en eller flere cancer suspekte lesjon. Kan skje flytte til ACTION.procedure eller FUNN
 // Not supported rmType CLUSTER
 | 1..1|DV_TEXT | Undersøkt organsystem eller struktur
 a|
@@ -430,7 +435,7 @@ a|
 * Rectum (local_terms: 34402009)
 
 
-Angir spesifikk anatomisk lokalisasjon for inflammasjon. 
+Angir spesifikk anatomisk lokalisasjon for inflammasjon.
 | 0..1|DV_CODED_TEXT | Klinisk beskrivelse
 a|
 * Ekstensiv kolitt (NB! Mangler SNOMED-CT ) (SNOMED-CT: 55555555)
@@ -439,7 +444,7 @@ a|
 * Prokitt (SNOMED-CT: 52231000)
 
 
-Settes automatisk av applikasjon. 
+Settes automatisk av applikasjon.
 // Not supported rmType CLUSTER
 | 0..1|DV_ORDINAL | Mucosa utseende ved koloskopi
 a|
@@ -487,7 +492,7 @@ For eksempel den generiske termen "Hud" - som mest sannsynlig vil trenge en ytte
 a|
 
 
-Nærmere beskrivelse av MB Chrohn funn. 
+Nærmere beskrivelse av MB Chrohn funn.
 // Not supported rmType CLUSTER
 | 1..1|DV_CODED_TEXT | Undersøkt organsystem eller struktur
 a|
@@ -499,7 +504,7 @@ For eksempel den generiske termen "Hud" - som mest sannsynlig vil trenge en ytte
 a|
 
 
-Nærmere beskrivelse av MB Chrohn funn. 
+Nærmere beskrivelse av MB Chrohn funn.
 | 1..1|DV_DATE_TIME | Time
 |
 // Not supported rmType CODE_PHRASE
@@ -611,7 +616,7 @@ a|
 * Andre tiltak (SNOMED-CT: 118839001)
 
 
-Bruker SCT kode for andre tiltak i kolon. Legen angir ytterligere beskirvelser i "beskrivelse": 
+Bruker SCT kode for andre tiltak i kolon. Legen angir ytterligere beskirvelser i "beskrivelse":
 | 0..1|DV_TEXT | Beskrivelse
 a|
 

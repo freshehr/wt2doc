@@ -58,6 +58,11 @@ export class DocBuilder {
           f.name = 'EVENT_CONTEXT';
           this.walkEntry(f);
           break;
+        case 'CODE_PHRASE':
+          f.name = 'CODE_PHRASE';
+          this.walkCodePhrase(f);
+          break;
+
         default:
           this.sb.append('// Not supported rmType ' + f.rmType);
           this.walkChildren(f);
@@ -125,6 +130,9 @@ export class DocBuilder {
       case 'DV_BOOLEAN':
         this.walkDvBoolean(f);
         break;
+      case 'DV_IDENTIFIER':
+        this.walkDvIdentifier(f);
+        break;
       default:
         this.sb.append('|Not supported rm type' + f.rmType);
     }
@@ -137,6 +145,14 @@ export class DocBuilder {
   }
 
   private walkDvBoolean(f: FormElement) {
+    this.sb.append('|');
+  }
+
+  private walkCodePhrase(f: FormElement) {
+    this.sb.append('|');
+  }
+
+  private walkDvIdentifier(f: FormElement) {
     this.sb.append('|');
   }
   private walkDvDuration(f: FormElement) {

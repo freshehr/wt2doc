@@ -5,9 +5,10 @@
   "main": "lib/index.js",
   "bin": {
     "wt2doc": "lib/index.js"
+
   },
   "scripts": {
-    "dev": "ts-node src/index.ts",
+    "dev": "ts-node src/index.ts  --wt 'testdata/EA - ReSPECT-3.v0.json' -o 'EA - ReSPECT-3.v0.adoc'",
     "build": "tsc -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",

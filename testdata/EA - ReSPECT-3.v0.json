@@ -1,0 +1,1830 @@
+{
+  "templateId" : "EA - ReSPECT-3.v0",
+  "version" : "2.3",
+  "defaultLanguage" : "en",
+  "languages" : [ "en" ],
+  "tree" : {
+    "id" : "respect-3",
+    "name" : "ReSPECT-3",
+    "localizedName" : "ReSPECT-3",
+    "rmType" : "COMPOSITION",
+    "nodeId" : "openEHR-EHR-COMPOSITION.report.v1",
+    "min" : 1,
+    "max" : 1,
+    "localizedNames" : {
+      "en" : "ReSPECT-3"
+    },
+    "localizedDescriptions" : {
+      "en" : "Document to communicate information to others, commonly in response to a request from another party."
+    },
+    "annotations" : {
+      "Notes.Authors Note" : "This description may be useful to display in the UI: Document to communicate relevant patient information and summary recommendations from ReSPECT (Recommended Summary Plan for Emergency Care and Treatment) process."
+    },
+    "aqlPath" : "",
+    "children" : [ {
+      "id" : "context",
+      "rmType" : "EVENT_CONTEXT",
+      "nodeId" : "",
+      "min" : 1,
+      "max" : 1,
+      "aqlPath" : "/context",
+      "children" : [ {
+        "id" : "status",
+        "name" : "Status",
+        "localizedName" : "Status",
+        "rmType" : "DV_TEXT",
+        "nodeId" : "at0005",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "Status"
+        },
+        "localizedDescriptions" : {
+          "en" : "The status of the entire report. Note: This is not the status of any of the report components."
+        },
+        "aqlPath" : "/context/other_context[at0001]/items[at0005]/value",
+        "inputs" : [ {
+          "type" : "TEXT",
+          "list" : [ {
+            "value" : "Started",
+            "label" : "Started"
+          }, {
+            "value" : "Partially complete",
+            "label" : "Partially complete"
+          }, {
+            "value" : "Complete and signed",
+            "label" : "Complete and signed"
+          } ],
+          "listOpen" : false
+        } ]
+      }, {
+        "id" : "xds_metadata",
+        "name" : "XDS Metadata",
+        "localizedName" : "XDS Metadata",
+        "rmType" : "CLUSTER",
+        "nodeId" : "openEHR-EHR-CLUSTER.xds_metadata.v0",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "XDS Metadata"
+        },
+        "localizedDescriptions" : {
+          "en" : "Additional composition metadata aligned with IHE-XDS which is not already available from the Reference Model COMPOSITION class."
+        },
+        "aqlPath" : "/context/other_context[at0001]/items[openEHR-EHR-CLUSTER.xds_metadata.v0]",
+        "children" : [ {
+          "id" : "author_specialty",
+          "name" : "Author specialty",
+          "localizedName" : "Author specialty",
+          "rmType" : "DV_TEXT",
+          "nodeId" : "at0001",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Author specialty"
+          },
+          "localizedDescriptions" : {
+            "en" : "The speciality of the author/composer of the document."
+          },
+          "aqlPath" : "/context/other_context[at0001]/items[openEHR-EHR-CLUSTER.xds_metadata.v0]/items[at0001]/value",
+          "inputs" : [ {
+            "type" : "TEXT"
+          } ]
+        }, {
+          "id" : "document_type",
+          "name" : "Document type",
+          "localizedName" : "Document type",
+          "rmType" : "DV_CODED_TEXT",
+          "nodeId" : "at0003",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Document type"
+          },
+          "localizedDescriptions" : {
+            "en" : "The code specifying the precise type of document from the user perspective. Normally selected from a valueset provided by the local IHE-XDS Affinity Domain or national standard."
+          },
+          "annotations" : {
+            "comment" : "for example:  Pulmonary History and Physical, Discharge Summary, Ultrasound Report.\r\nThese codes are specific to an XDS Affinity Domain."
+          },
+          "aqlPath" : "/context/other_context[at0001]/items[openEHR-EHR-CLUSTER.xds_metadata.v0]/items[at0003]/value",
+          "inputs" : [ {
+            "suffix" : "code",
+            "type" : "TEXT",
+            "defaultValue" : "827701000000106",
+            "terminology" : "//snomed.info"
+          }, {
+            "suffix" : "value",
+            "type" : "TEXT",
+            "defaultValue" : "Living will and advance directive record (record artifact)",
+            "terminology" : "//snomed.info"
+          } ]
+        } ]
+      }, {
+        "id" : "start_time",
+        "name" : "Start_time",
+        "rmType" : "DV_DATE_TIME",
+        "min" : 1,
+        "max" : 1,
+        "aqlPath" : "/context/start_time",
+        "inputs" : [ {
+          "type" : "DATETIME"
+        } ],
+        "inContext" : true
+      }, {
+        "id" : "setting",
+        "name" : "Setting",
+        "rmType" : "DV_CODED_TEXT",
+        "min" : 1,
+        "max" : 1,
+        "aqlPath" : "/context/setting",
+        "inputs" : [ {
+          "suffix" : "code",
+          "type" : "TEXT"
+        }, {
+          "suffix" : "value",
+          "type" : "TEXT"
+        } ],
+        "inContext" : true
+      } ]
+    }, {
+      "id" : "respect_headings",
+      "name" : "ReSPECT headings",
+      "localizedName" : "ReSPECT headings",
+      "rmType" : "SECTION",
+      "nodeId" : "openEHR-EHR-SECTION.respect_headings.v0",
+      "min" : 0,
+      "max" : 1,
+      "localizedNames" : {
+        "en" : "ReSPECT headings"
+      },
+      "localizedDescriptions" : {
+        "en" : "Top level heading for capturing details of ReSPECT process."
+      },
+      "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]",
+      "children" : [ {
+        "id" : "a2._shared_understanding",
+        "name" : "2. Shared understanding",
+        "localizedName" : "2. Shared understanding",
+        "rmType" : "SECTION",
+        "nodeId" : "at0001",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "2. Shared understanding"
+        },
+        "localizedDescriptions" : {
+          "en" : "Heading containing summary of relevant information for the ReSPECT process."
+        },
+        "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0001]",
+        "children" : [ {
+          "id" : "respect_summary",
+          "name" : "ReSPECT Summary",
+          "localizedName" : "ReSPECT Summary",
+          "rmType" : "EVALUATION",
+          "nodeId" : "openEHR-EHR-EVALUATION.clinical_synopsis.v1",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "ReSPECT Summary"
+          },
+          "localizedDescriptions" : {
+            "en" : "Narrative summary or overview about a patient, specifically from the perspective of a healthcare provider, and with or without associated interpretations."
+          },
+          "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0001]/items[openEHR-EHR-EVALUATION.clinical_synopsis.v1,'ReSPECT Summary']",
+          "children" : [ {
+            "id" : "narrative_summary",
+            "name" : "Narrative Summary",
+            "localizedName" : "Narrative Summary",
+            "rmType" : "DV_TEXT",
+            "nodeId" : "at0002",
+            "min" : 1,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Narrative Summary"
+            },
+            "localizedDescriptions" : {
+              "en" : "The summary, assessment, conclusions or evaluation of the clinical findings."
+            },
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0001]/items[openEHR-EHR-EVALUATION.clinical_synopsis.v1,'ReSPECT Summary']/data[at0001]/items[at0002,'Narrative Summary']/value",
+            "inputs" : [ {
+              "type" : "TEXT"
+            } ]
+          }, {
+            "id" : "language",
+            "name" : "Language",
+            "rmType" : "CODE_PHRASE",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0001]/items[openEHR-EHR-EVALUATION.clinical_synopsis.v1,'ReSPECT Summary']/language",
+            "inContext" : true
+          }, {
+            "id" : "encoding",
+            "name" : "Encoding",
+            "rmType" : "CODE_PHRASE",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0001]/items[openEHR-EHR-EVALUATION.clinical_synopsis.v1,'ReSPECT Summary']/encoding",
+            "inContext" : true
+          }, {
+            "id" : "subject",
+            "name" : "Subject",
+            "rmType" : "PARTY_PROXY",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0001]/items[openEHR-EHR-EVALUATION.clinical_synopsis.v1,'ReSPECT Summary']/subject",
+            "inContext" : true
+          } ]
+        }, {
+          "id" : "details_of_other_relevant_care_planning_documents_and_where_to_find_them",
+          "name" : "Details of other relevant care planning documents and where to find them",
+          "localizedName" : "Details of other relevant care planning documents and where to find them",
+          "rmType" : "SECTION",
+          "nodeId" : "openEHR-EHR-SECTION.adhoc.v1",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Details of other relevant care planning documents and where to find them"
+          },
+          "localizedDescriptions" : {
+            "en" : "A generic section header which should be renamed in a template to suit a specific clinical context."
+          },
+          "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0001]/items[openEHR-EHR-SECTION.adhoc.v1,'Details of other relevant care planning documents and where to find them']",
+          "children" : [ {
+            "id" : "advance_planning_document",
+            "name" : "Advance planning document",
+            "localizedName" : "Advance planning document",
+            "rmType" : "EVALUATION",
+            "nodeId" : "openEHR-EHR-EVALUATION.advance_care_directive.v1",
+            "min" : 0,
+            "max" : -1,
+            "localizedNames" : {
+              "en" : "Advance planning document"
+            },
+            "localizedDescriptions" : {
+              "en" : "A framework to communicate the preferences of an individual for future medical treatment and care."
+            },
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0001]/items[openEHR-EHR-SECTION.adhoc.v1,'Details of other relevant care planning documents and where to find them']/items[openEHR-EHR-EVALUATION.advance_care_directive.v1,'Advance planning document']",
+            "children" : [ {
+              "id" : "description",
+              "name" : "Description",
+              "localizedName" : "Description",
+              "rmType" : "DV_TEXT",
+              "nodeId" : "at0006",
+              "min" : 0,
+              "max" : 1,
+              "localizedNames" : {
+                "en" : "Description"
+              },
+              "localizedDescriptions" : {
+                "en" : "Narrative description of the overall advance care directive."
+              },
+              "annotations" : {
+                "comment" : "May be used to record a narrative overview of the complete advance care directive, which may or may not be supported by structured data. Details of specific structured findings can be included using CLUSTER archetypes in the 'Directive details' slot. This data element may be used to capture legacy data that is not available in a structured format."
+              },
+              "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0001]/items[openEHR-EHR-SECTION.adhoc.v1,'Details of other relevant care planning documents and where to find them']/items[openEHR-EHR-EVALUATION.advance_care_directive.v1,'Advance planning document']/data[at0001]/items[at0006]/value",
+              "inputs" : [ {
+                "type" : "TEXT"
+              } ]
+            }, {
+              "id" : "directive_location",
+              "name" : "Directive location",
+              "localizedName" : "Directive location",
+              "rmType" : "CLUSTER",
+              "nodeId" : "at0058",
+              "min" : 0,
+              "max" : -1,
+              "localizedNames" : {
+                "en" : "Directive location"
+              },
+              "localizedDescriptions" : {
+                "en" : "Information regarding where the advance care directive is stored and who has a copy of it."
+              },
+              "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0001]/items[openEHR-EHR-SECTION.adhoc.v1,'Details of other relevant care planning documents and where to find them']/items[openEHR-EHR-EVALUATION.advance_care_directive.v1,'Advance planning document']/data[at0001]/items[at0058]",
+              "children" : [ {
+                "id" : "location",
+                "name" : "Location",
+                "localizedName" : "Location",
+                "rmType" : "DV_TEXT",
+                "nodeId" : "at0030",
+                "min" : 0,
+                "max" : 1,
+                "localizedNames" : {
+                  "en" : "Location"
+                },
+                "localizedDescriptions" : {
+                  "en" : "Information regarding where the advance care directive is stored and how to gain access to it."
+                },
+                "annotations" : {
+                  "comment" : "For example, 'In the top drawer of the bedside table'."
+                },
+                "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0001]/items[openEHR-EHR-SECTION.adhoc.v1,'Details of other relevant care planning documents and where to find them']/items[openEHR-EHR-EVALUATION.advance_care_directive.v1,'Advance planning document']/data[at0001]/items[at0058]/items[at0030]/value",
+                "inputs" : [ {
+                  "type" : "TEXT"
+                } ]
+              } ]
+            }, {
+              "id" : "language",
+              "name" : "Language",
+              "rmType" : "CODE_PHRASE",
+              "min" : 1,
+              "max" : 1,
+              "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0001]/items[openEHR-EHR-SECTION.adhoc.v1,'Details of other relevant care planning documents and where to find them']/items[openEHR-EHR-EVALUATION.advance_care_directive.v1,'Advance planning document']/language",
+              "inContext" : true
+            }, {
+              "id" : "encoding",
+              "name" : "Encoding",
+              "rmType" : "CODE_PHRASE",
+              "min" : 1,
+              "max" : 1,
+              "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0001]/items[openEHR-EHR-SECTION.adhoc.v1,'Details of other relevant care planning documents and where to find them']/items[openEHR-EHR-EVALUATION.advance_care_directive.v1,'Advance planning document']/encoding",
+              "inContext" : true
+            }, {
+              "id" : "subject",
+              "name" : "Subject",
+              "rmType" : "PARTY_PROXY",
+              "min" : 1,
+              "max" : 1,
+              "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0001]/items[openEHR-EHR-SECTION.adhoc.v1,'Details of other relevant care planning documents and where to find them']/items[openEHR-EHR-EVALUATION.advance_care_directive.v1,'Advance planning document']/subject",
+              "inContext" : true
+            } ]
+          } ]
+        }, {
+          "id" : "legal_welfare_proxies",
+          "name" : "Legal welfare proxies",
+          "localizedName" : "Legal welfare proxies",
+          "rmType" : "SECTION",
+          "nodeId" : "openEHR-EHR-SECTION.ehr_reference.v0",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Legal welfare proxies"
+          },
+          "localizedDescriptions" : {
+            "en" : "This section indicates that the enclosed information is stored in a different composition/template but is intended to be referenced here."
+          },
+          "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0001]/items[openEHR-EHR-SECTION.ehr_reference.v0,'Legal welfare proxies']",
+          "children" : [ {
+            "id" : "legal_welfare_proxy_in_place",
+            "name" : "Legal welfare proxy in place",
+            "localizedName" : "Legal welfare proxy in place",
+            "rmType" : "ADMIN_ENTRY",
+            "nodeId" : "openEHR-EHR-ADMIN_ENTRY.legal_authority.v0",
+            "min" : 0,
+            "max" : -1,
+            "localizedNames" : {
+              "en" : "Legal welfare proxy in place"
+            },
+            "localizedDescriptions" : {
+              "en" : "A framework to communicate information about legal directives or orders that apply to the individual, for example, a power of attorney or guardianship order."
+            },
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0001]/items[openEHR-EHR-SECTION.ehr_reference.v0,'Legal welfare proxies']/items[openEHR-EHR-ADMIN_ENTRY.legal_authority.v0,'Legal welfare proxy in place']",
+            "children" : [ {
+              "id" : "type",
+              "name" : "Type",
+              "localizedName" : "Type",
+              "rmType" : "DV_TEXT",
+              "nodeId" : "at0002",
+              "min" : 0,
+              "max" : 1,
+              "localizedNames" : {
+                "en" : "Type"
+              },
+              "localizedDescriptions" : {
+                "en" : "The type of legal directive or order that applies to the individual."
+              },
+              "annotations" : {
+                "comment" : "Coding of the type of legal directive or order with a terminology is preferred, where possible. It is expected that this is largely localised to reflect local policy and legislation. For example, 'Welfare Power of Attorney', 'Welfare Guardianship Order' or 'Emergency Detention Order'."
+              },
+              "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0001]/items[openEHR-EHR-SECTION.ehr_reference.v0,'Legal welfare proxies']/items[openEHR-EHR-ADMIN_ENTRY.legal_authority.v0,'Legal welfare proxy in place']/data[at0001]/items[at0002]/value",
+              "inputs" : [ {
+                "type" : "TEXT"
+              } ]
+            }, {
+              "id" : "status",
+              "name" : "Status",
+              "localizedName" : "Status",
+              "rmType" : "DV_CODED_TEXT",
+              "nodeId" : "at0004",
+              "min" : 0,
+              "max" : 1,
+              "localizedNames" : {
+                "en" : "Status"
+              },
+              "localizedDescriptions" : {
+                "en" : "The status of the legal directive or order."
+              },
+              "annotations" : {
+                "comment" : "Coding of the legal directive or order status with a terminology is preferred, where possible."
+              },
+              "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0001]/items[openEHR-EHR-SECTION.ehr_reference.v0,'Legal welfare proxies']/items[openEHR-EHR-ADMIN_ENTRY.legal_authority.v0,'Legal welfare proxy in place']/data[at0001]/items[at0004]/value",
+              "inputs" : [ {
+                "suffix" : "code",
+                "type" : "CODED_TEXT",
+                "list" : [ {
+                  "value" : "at0005",
+                  "label" : "Present",
+                  "localizedLabels" : {
+                    "en" : "Present"
+                  },
+                  "localizedDescriptions" : {
+                    "en" : "A legal directive or order is present."
+                  }
+                }, {
+                  "value" : "at0006",
+                  "label" : "Absent",
+                  "localizedLabels" : {
+                    "en" : "Absent"
+                  },
+                  "localizedDescriptions" : {
+                    "en" : "A legal directive or order is absent."
+                  }
+                }, {
+                  "value" : "at0007",
+                  "label" : "Unknown",
+                  "localizedLabels" : {
+                    "en" : "Unknown"
+                  },
+                  "localizedDescriptions" : {
+                    "en" : "It is not known whether a legal directive or order is present or absent."
+                  }
+                } ],
+                "listOpen" : true
+              }, {
+                "suffix" : "other",
+                "type" : "TEXT"
+              } ]
+            }, {
+              "id" : "language",
+              "name" : "Language",
+              "rmType" : "CODE_PHRASE",
+              "min" : 1,
+              "max" : 1,
+              "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0001]/items[openEHR-EHR-SECTION.ehr_reference.v0,'Legal welfare proxies']/items[openEHR-EHR-ADMIN_ENTRY.legal_authority.v0,'Legal welfare proxy in place']/language",
+              "inContext" : true
+            }, {
+              "id" : "encoding",
+              "name" : "Encoding",
+              "rmType" : "CODE_PHRASE",
+              "min" : 1,
+              "max" : 1,
+              "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0001]/items[openEHR-EHR-SECTION.ehr_reference.v0,'Legal welfare proxies']/items[openEHR-EHR-ADMIN_ENTRY.legal_authority.v0,'Legal welfare proxy in place']/encoding",
+              "inContext" : true
+            }, {
+              "id" : "subject",
+              "name" : "Subject",
+              "rmType" : "PARTY_PROXY",
+              "min" : 1,
+              "max" : 1,
+              "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0001]/items[openEHR-EHR-SECTION.ehr_reference.v0,'Legal welfare proxies']/items[openEHR-EHR-ADMIN_ENTRY.legal_authority.v0,'Legal welfare proxy in place']/subject",
+              "inContext" : true
+            } ]
+          } ]
+        } ]
+      }, {
+        "id" : "a3._what_matters_to_me",
+        "name" : "3. What matters to me",
+        "localizedName" : "3. What matters to me",
+        "rmType" : "SECTION",
+        "nodeId" : "at0006",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "3. What matters to me"
+        },
+        "localizedDescriptions" : {
+          "en" : "Details of personal preferences to guide this ReSPECT plan (where the person has capacity)."
+        },
+        "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0006]",
+        "children" : [ {
+          "id" : "what_matters_to_me",
+          "name" : "What matters to me",
+          "localizedName" : "What matters to me",
+          "rmType" : "EVALUATION",
+          "nodeId" : "openEHR-EHR-EVALUATION.about_me.v0",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "What matters to me"
+          },
+          "localizedDescriptions" : {
+            "en" : "About me"
+          },
+          "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0006]/items[openEHR-EHR-EVALUATION.about_me.v0,'What matters to me']",
+          "children" : [ {
+            "id" : "what_i_most_value",
+            "name" : "What I most value",
+            "localizedName" : "What I most value",
+            "rmType" : "DV_TEXT",
+            "nodeId" : "at0002",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "What I most value"
+            },
+            "localizedDescriptions" : {
+              "en" : ""
+            },
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0006]/items[openEHR-EHR-EVALUATION.about_me.v0,'What matters to me']/data[at0001]/items[at0002,'What I most value']/value",
+            "inputs" : [ {
+              "type" : "TEXT"
+            } ]
+          }, {
+            "id" : "what_i_most_fear_wish_to_avoid",
+            "name" : "What I most fear / wish to avoid",
+            "localizedName" : "What I most fear / wish to avoid",
+            "rmType" : "DV_TEXT",
+            "nodeId" : "at0002",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "What I most fear / wish to avoid"
+            },
+            "localizedDescriptions" : {
+              "en" : ""
+            },
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0006]/items[openEHR-EHR-EVALUATION.about_me.v0,'What matters to me']/data[at0001]/items[at0002,'What I most fear / wish to avoid']/value",
+            "inputs" : [ {
+              "type" : "TEXT"
+            } ]
+          }, {
+            "id" : "language",
+            "name" : "Language",
+            "rmType" : "CODE_PHRASE",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0006]/items[openEHR-EHR-EVALUATION.about_me.v0,'What matters to me']/language",
+            "inContext" : true
+          }, {
+            "id" : "encoding",
+            "name" : "Encoding",
+            "rmType" : "CODE_PHRASE",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0006]/items[openEHR-EHR-EVALUATION.about_me.v0,'What matters to me']/encoding",
+            "inContext" : true
+          }, {
+            "id" : "subject",
+            "name" : "Subject",
+            "rmType" : "PARTY_PROXY",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0006]/items[openEHR-EHR-EVALUATION.about_me.v0,'What matters to me']/subject",
+            "inContext" : true
+          } ]
+        } ]
+      }, {
+        "id" : "a4._clinical_recommendations",
+        "name" : "4. Clinical recommendations",
+        "localizedName" : "4. Clinical recommendations",
+        "rmType" : "SECTION",
+        "nodeId" : "at0007",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "4. Clinical recommendations"
+        },
+        "localizedDescriptions" : {
+          "en" : "Summary of clinical recommendations for emergency care and treatment."
+        },
+        "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0007]",
+        "children" : [ {
+          "id" : "recommendation",
+          "name" : "Recommendation",
+          "localizedName" : "Recommendation",
+          "rmType" : "EVALUATION",
+          "nodeId" : "openEHR-EHR-EVALUATION.recommendation.v1",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Recommendation"
+          },
+          "localizedDescriptions" : {
+            "en" : "A suggestion, advice or proposal for clinical management."
+          },
+          "annotations" : {
+            "Notes.Authors Note" : "This description may be useful to display in the UI: Summary of agreed and realistic clinical recommendations for emergency care and treatment."
+          },
+          "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0007]/items[openEHR-EHR-EVALUATION.recommendation.v1]",
+          "children" : [ {
+            "id" : "topic",
+            "name" : "Topic",
+            "localizedName" : "Topic",
+            "rmType" : "DV_TEXT",
+            "nodeId" : "at0006",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Topic"
+            },
+            "localizedDescriptions" : {
+              "en" : "The topic or subject of the recommendation."
+            },
+            "annotations" : {
+              "comment" : "Useful if multiple types of recommendations are made at the same time, and within the same data set."
+            },
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0007]/items[openEHR-EHR-EVALUATION.recommendation.v1]/data[at0001]/items[at0006]/value",
+            "inputs" : [ {
+              "type" : "TEXT"
+            } ]
+          }, {
+            "id" : "clinical_focus",
+            "name" : "Clinical focus",
+            "localizedName" : "Clinical focus",
+            "rmType" : "DV_TEXT",
+            "nodeId" : "at0002",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Clinical focus"
+            },
+            "localizedDescriptions" : {
+              "en" : "Narrative description of the recommendation."
+            },
+            "annotations" : {
+              "Notes.Authors Note" : "This description may be useful to display in the UI: Focus on life-sustaining treatment or symptom control according to clinical guidance on specific interventions specified below.",
+              "comment" : "May be coded, using a terminology, if required."
+            },
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0007]/items[openEHR-EHR-EVALUATION.recommendation.v1]/data[at0001]/items[at0002,'Clinical focus']/value",
+            "inputs" : [ {
+              "type" : "TEXT",
+              "list" : [ {
+                "value" : "Prioritise extending life",
+                "label" : "Prioritise extending life"
+              }, {
+                "value" : "Balance extending life with comfort and valued outcomes",
+                "label" : "Balance extending life with comfort and valued outcomes"
+              }, {
+                "value" : "Prioritise comfort",
+                "label" : "Prioritise comfort"
+              } ],
+              "listOpen" : false
+            } ]
+          }, {
+            "id" : "clinical_guidance_on_interventions",
+            "name" : "Clinical guidance on interventions",
+            "localizedName" : "Clinical guidance on interventions",
+            "rmType" : "DV_TEXT",
+            "nodeId" : "at0003",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Clinical guidance on interventions"
+            },
+            "localizedDescriptions" : {
+              "en" : "Justifications for the recommendation."
+            },
+            "annotations" : {
+              "Notes.Authors Note" : "This description may be useful to display in the UI: Clinician's guidance on specific interventions that may or may not be wanted or be clinically appropriate, including being taken or admitted to hospital +/- receiving life support."
+            },
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0007]/items[openEHR-EHR-EVALUATION.recommendation.v1]/data[at0001]/items[at0003,'Clinical guidance on interventions']/value",
+            "inputs" : [ {
+              "type" : "TEXT"
+            } ]
+          }, {
+            "id" : "language",
+            "name" : "Language",
+            "rmType" : "CODE_PHRASE",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0007]/items[openEHR-EHR-EVALUATION.recommendation.v1]/language",
+            "inContext" : true
+          }, {
+            "id" : "encoding",
+            "name" : "Encoding",
+            "rmType" : "CODE_PHRASE",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0007]/items[openEHR-EHR-EVALUATION.recommendation.v1]/encoding",
+            "inContext" : true
+          }, {
+            "id" : "subject",
+            "name" : "Subject",
+            "rmType" : "PARTY_PROXY",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0007]/items[openEHR-EHR-EVALUATION.recommendation.v1]/subject",
+            "inContext" : true
+          } ]
+        }, {
+          "id" : "cpr_decision",
+          "name" : "CPR decision",
+          "localizedName" : "CPR decision",
+          "rmType" : "EVALUATION",
+          "nodeId" : "openEHR-EHR-EVALUATION.cpr_decision_uk.v0",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "CPR decision"
+          },
+          "localizedDescriptions" : {
+            "en" : "The advance recommendation as to whether cardio-pulmonary resuscitation should be undertaken or not. This is generally referred to in UK clinical guidance as the CPR (Cardio-pulmonary resuscitation) decision."
+          },
+          "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0007]/items[openEHR-EHR-EVALUATION.cpr_decision_uk.v0]",
+          "children" : [ {
+            "id" : "cpr_decision",
+            "name" : "CPR decision",
+            "localizedName" : "CPR decision",
+            "rmType" : "DV_CODED_TEXT",
+            "nodeId" : "at0003",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "CPR decision"
+            },
+            "localizedDescriptions" : {
+              "en" : "The advance recommendation as to whether cardiopulmonary resuscitation (CPR) should be attempted. In some cases a clear answer may not be available to the recording clinician."
+            },
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0007]/items[openEHR-EHR-EVALUATION.cpr_decision_uk.v0]/data[at0001]/items[at0003]/value",
+            "inputs" : [ {
+              "suffix" : "code",
+              "type" : "CODED_TEXT",
+              "list" : [ {
+                "value" : "at0004",
+                "label" : "CPR attempts recommended adult or child",
+                "localizedLabels" : {
+                  "en" : "CPR attempts recommended adult or child"
+                },
+                "localizedDescriptions" : {
+                  "en" : "Cardio-pulmonary resuscitation is recommended for adult or child."
+                },
+                "termBindings" : {
+                  "SNOMED-CT" : {
+                    "value" : "[SNOMED-CT::450475007]",
+                    "terminologyId" : "SNOMED-CT"
+                  },
+                  "RCD99" : {
+                    "value" : "[RCD99::1R00.]",
+                    "terminologyId" : "RCD99"
+                  },
+                  "READ2" : {
+                    "value" : "[READ2::1R0..]",
+                    "terminologyId" : "READ2"
+                  }
+                }
+              }, {
+                "value" : "at0005",
+                "label" : "CPR attempts not recommended adult or child.",
+                "localizedLabels" : {
+                  "en" : "CPR attempts not recommended adult or child."
+                },
+                "localizedDescriptions" : {
+                  "en" : "Cardiopulmonary resuscitation is not recommended for adult or child."
+                },
+                "termBindings" : {
+                  "SNOMED-CT" : {
+                    "value" : "[SNOMED-CT::450476008]",
+                    "terminologyId" : "SNOMED-CT"
+                  },
+                  "RCD99" : {
+                    "value" : "[RCD99::1R10.]",
+                    "terminologyId" : "RCD99"
+                  },
+                  "READ2" : {
+                    "value" : "[READ2::1R1..]",
+                    "terminologyId" : "READ2"
+                  }
+                }
+              }, {
+                "value" : "at0022",
+                "label" : "CPR decision status unknown",
+                "localizedLabels" : {
+                  "en" : "CPR decision status unknown"
+                },
+                "localizedDescriptions" : {
+                  "en" : "There is no clear information on the outcome of the CPR decision."
+                },
+                "termBindings" : {
+                  "SNOMED-CT" : {
+                    "value" : "[SNOMED-CT::845151000000104]",
+                    "terminologyId" : "SNOMED-CT"
+                  },
+                  "RCD99" : {
+                    "value" : "[RCD99::9NgV.]",
+                    "terminologyId" : "RCD99"
+                  },
+                  "READ2" : {
+                    "value" : "[READ2::9NgV.]",
+                    "terminologyId" : "READ2"
+                  }
+                }
+              }, {
+                "value" : "at0027",
+                "label" : "For modified CPR child only",
+                "localizedLabels" : {
+                  "en" : "For modified CPR child only"
+                },
+                "localizedDescriptions" : {
+                  "en" : "Modified CPR is recommended for child only."
+                }
+              } ]
+            } ]
+          }, {
+            "id" : "date_of_cpr_decision",
+            "name" : "Date of CPR decision",
+            "localizedName" : "Date of CPR decision",
+            "rmType" : "DV_DATE_TIME",
+            "nodeId" : "at0002",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Date of CPR decision"
+            },
+            "localizedDescriptions" : {
+              "en" : "The date at which the CPR decision was originally taken or last reviewed."
+            },
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0007]/items[openEHR-EHR-EVALUATION.cpr_decision_uk.v0]/data[at0001]/items[at0002]/value",
+            "inputs" : [ {
+              "type" : "DATETIME"
+            } ]
+          }, {
+            "id" : "language",
+            "name" : "Language",
+            "rmType" : "CODE_PHRASE",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0007]/items[openEHR-EHR-EVALUATION.cpr_decision_uk.v0]/language",
+            "inContext" : true
+          }, {
+            "id" : "encoding",
+            "name" : "Encoding",
+            "rmType" : "CODE_PHRASE",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0007]/items[openEHR-EHR-EVALUATION.cpr_decision_uk.v0]/encoding",
+            "inContext" : true
+          }, {
+            "id" : "subject",
+            "name" : "Subject",
+            "rmType" : "PARTY_PROXY",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0007]/items[openEHR-EHR-EVALUATION.cpr_decision_uk.v0]/subject",
+            "inContext" : true
+          } ]
+        } ]
+      }, {
+        "id" : "a5._capacity_for_involvement",
+        "name" : "5. Capacity for involvement",
+        "localizedName" : "5. Capacity for involvement",
+        "rmType" : "SECTION",
+        "nodeId" : "at0008",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "5. Capacity for involvement"
+        },
+        "localizedDescriptions" : {
+          "en" : "Details of capacity and representation at the time of completion of the ReSPECT form."
+        },
+        "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]",
+        "children" : [ {
+          "id" : "mental_capacity_assessment",
+          "name" : "Mental capacity assessment",
+          "localizedName" : "Mental capacity assessment",
+          "rmType" : "OBSERVATION",
+          "nodeId" : "openEHR-EHR-OBSERVATION.mental_capacity_assessment.v0",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Mental capacity assessment"
+          },
+          "localizedDescriptions" : {
+            "en" : "The ability of an individual to use and understand information to make or consent to a decision, plan or intervention."
+          },
+          "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-OBSERVATION.mental_capacity_assessment.v0]",
+          "children" : [ {
+            "id" : "decision_plan",
+            "name" : "Decision/plan",
+            "localizedName" : "Decision/plan",
+            "rmType" : "DV_TEXT",
+            "nodeId" : "at0004",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Decision/plan"
+            },
+            "localizedDescriptions" : {
+              "en" : "Description of the specific decision or plan to which the mental capacity status and assessment details relate."
+            },
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-OBSERVATION.mental_capacity_assessment.v0]/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value",
+            "inputs" : [ {
+              "type" : "TEXT"
+            } ]
+          }, {
+            "id" : "does_the_person_have_capacity_to_participate_in_making_recommendations_on_this_plan",
+            "name" : "Does the person have capacity to participate in making recommendations on this plan?",
+            "localizedName" : "Does the person have capacity to participate in making recommendations on this plan?",
+            "rmType" : "DV_CODED_TEXT",
+            "nodeId" : "at0005",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Does the person have capacity to participate in making recommendations on this plan?"
+            },
+            "localizedDescriptions" : {
+              "en" : "The individual's mental capacity status."
+            },
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-OBSERVATION.mental_capacity_assessment.v0]/data[at0001]/events[at0002]/data[at0003]/items[at0005,'Does the person have capacity to participate in making recommendations on this plan?']/value",
+            "inputs" : [ {
+              "suffix" : "code",
+              "type" : "CODED_TEXT",
+              "list" : [ {
+                "value" : "at0006",
+                "label" : "Has capacity",
+                "localizedLabels" : {
+                  "en" : "Has capacity"
+                },
+                "localizedDescriptions" : {
+                  "en" : "The individual has sufficient mental capacity to make the decision or plan."
+                }
+              }, {
+                "value" : "at0007",
+                "label" : "Does not have capacity",
+                "localizedLabels" : {
+                  "en" : "Does not have capacity"
+                },
+                "localizedDescriptions" : {
+                  "en" : "The individual does not have sufficient mental capacity to make the decision or plan."
+                }
+              }, {
+                "value" : "at0008",
+                "label" : "Indeterminate",
+                "localizedLabels" : {
+                  "en" : "Indeterminate"
+                },
+                "localizedDescriptions" : {
+                  "en" : "It has not been able to determinate whether the individual has sufficient mental capacity to make decision or plan."
+                }
+              } ]
+            } ]
+          }, {
+            "id" : "if_no_in_what_way_does_this_person_lack_capacity",
+            "name" : "If no, in what way does this person lack capacity?",
+            "localizedName" : "If no, in what way does this person lack capacity?",
+            "rmType" : "DV_TEXT",
+            "nodeId" : "at0009",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "If no, in what way does this person lack capacity?"
+            },
+            "localizedDescriptions" : {
+              "en" : "Narrative description of the individual's mental capacity."
+            },
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-OBSERVATION.mental_capacity_assessment.v0]/data[at0001]/events[at0002]/data[at0003]/items[at0009,'If no, in what way does this person lack capacity?']/value",
+            "inputs" : [ {
+              "type" : "TEXT"
+            } ]
+          }, {
+            "id" : "time",
+            "name" : "Time",
+            "rmType" : "DV_DATE_TIME",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-OBSERVATION.mental_capacity_assessment.v0]/data[at0001]/events[at0002]/time",
+            "inputs" : [ {
+              "type" : "DATETIME"
+            } ],
+            "inContext" : true
+          }, {
+            "id" : "language",
+            "name" : "Language",
+            "rmType" : "CODE_PHRASE",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-OBSERVATION.mental_capacity_assessment.v0]/language",
+            "inContext" : true
+          }, {
+            "id" : "encoding",
+            "name" : "Encoding",
+            "rmType" : "CODE_PHRASE",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-OBSERVATION.mental_capacity_assessment.v0]/encoding",
+            "inContext" : true
+          }, {
+            "id" : "subject",
+            "name" : "Subject",
+            "rmType" : "PARTY_PROXY",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-OBSERVATION.mental_capacity_assessment.v0]/subject",
+            "inContext" : true
+          } ]
+        } ]
+      }, {
+        "id" : "a6._involvement_in_making_plan",
+        "name" : "6. Involvement in making plan",
+        "localizedName" : "6. Involvement in making plan",
+        "rmType" : "SECTION",
+        "nodeId" : "at0009",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "6. Involvement in making plan"
+        },
+        "localizedDescriptions" : {
+          "en" : "Details of those involved and discussions in making the ReSPECT plan."
+        },
+        "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0009]",
+        "children" : [ {
+          "id" : "respect_involvement",
+          "name" : "ReSPECT involvement",
+          "localizedName" : "ReSPECT involvement",
+          "rmType" : "ADMIN_ENTRY",
+          "nodeId" : "openEHR-EHR-ADMIN_ENTRY.respect_involvement.v0",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "ReSPECT involvement"
+          },
+          "localizedDescriptions" : {
+            "en" : "Details of involvement in making a ReSPECT plan."
+          },
+          "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0009]/items[openEHR-EHR-ADMIN_ENTRY.respect_involvement.v0]",
+          "children" : [ {
+            "id" : "involvement_in_recommendations",
+            "name" : "Involvement in recommendations",
+            "localizedName" : "Involvement in recommendations",
+            "rmType" : "CLUSTER",
+            "nodeId" : "at0012",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Involvement in recommendations"
+            },
+            "localizedDescriptions" : {
+              "en" : "The clinician(s) signing this plan is/are confirming that these recommendations have at least one of A, B or C or valid reason for not selecting A,B or C fully documented in clinical record."
+            },
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0009]/items[openEHR-EHR-ADMIN_ENTRY.respect_involvement.v0]/data[at0001]/items[at0012]",
+            "children" : [ {
+              "id" : "involvement",
+              "name" : "Involvement",
+              "localizedName" : "Involvement",
+              "rmType" : "DV_CODED_TEXT",
+              "nodeId" : "at0002",
+              "min" : 0,
+              "max" : -1,
+              "localizedNames" : {
+                "en" : "Involvement"
+              },
+              "localizedDescriptions" : {
+                "en" : "Details of involvement in making this plan."
+              },
+              "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0009]/items[openEHR-EHR-ADMIN_ENTRY.respect_involvement.v0]/data[at0001]/items[at0012]/items[at0002]/value",
+              "inputs" : [ {
+                "suffix" : "code",
+                "type" : "CODED_TEXT",
+                "list" : [ {
+                  "value" : "at0003",
+                  "label" : "A Person has mental capacity",
+                  "localizedLabels" : {
+                    "en" : "A Person has mental capacity"
+                  },
+                  "localizedDescriptions" : {
+                    "en" : "This person has the mental capacity to participate in making these recommendations. They have been fully involved in making this plan."
+                  }
+                }, {
+                  "value" : "at0004",
+                  "label" : "B Person does not have mental capacity",
+                  "localizedLabels" : {
+                    "en" : "B Person does not have mental capacity"
+                  },
+                  "localizedDescriptions" : {
+                    "en" : "This person does not have the mental capacity to participate in making these recommendations. This plan has been made in accordance with capacity law, including, where applicable, in consultation with their legal proxy, or where no proxy, with relevant family members/friends."
+                  }
+                }, {
+                  "value" : "at0005",
+                  "label" : "C1 Person less than 18 or 16 with sufficient maturity",
+                  "localizedLabels" : {
+                    "en" : "C1 Person less than 18 or 16 with sufficient maturity"
+                  },
+                  "localizedDescriptions" : {
+                    "en" : "This person is less than 18 (UK except Scotland) / 16 (Scotland) and they have sufficient maturity and understanding to participate in making this plan."
+                  }
+                }, {
+                  "value" : "at0010",
+                  "label" : "C2 Person less than 18 or 16 without sufficient maturity",
+                  "localizedLabels" : {
+                    "en" : "C2 Person less than 18 or 16 without sufficient maturity"
+                  },
+                  "localizedDescriptions" : {
+                    "en" : "This person is less than 18 (UK except Scotland) / 16 (Scotland) and they do not have sufficient maturity and understanding to participate in this plan. Their views, where known, have been taken into account."
+                  }
+                }, {
+                  "value" : "at0011",
+                  "label" : "C3 Person less than 18 or 16 parental decision",
+                  "localizedLabels" : {
+                    "en" : "C3 Person less than 18 or 16 parental decision"
+                  },
+                  "localizedDescriptions" : {
+                    "en" : "This person is less than 18 (UK except Scotland) /16 (Scotland) and those holding parental responsibility have been fully involved in discussing and making this plan."
+                  }
+                } ]
+              } ]
+            }, {
+              "id" : "option_d",
+              "name" : "Option D",
+              "localizedName" : "Option D",
+              "rmType" : "DV_TEXT",
+              "nodeId" : "at0007",
+              "min" : 0,
+              "max" : 1,
+              "localizedNames" : {
+                "en" : "Option D"
+              },
+              "localizedDescriptions" : {
+                "en" : "Description of reason for not selecting Options A, B or C or where C1 or C2 is selected without selecting C3."
+              },
+              "annotations" : {
+                "comment" : "Additional implementation guidance: in an electronic format, if someone selects D we could have a line coming up explaining that the only legal reasons for selecting D are:\r\n1. if the physician thinks it would cause the patient physiological or psychological harm\r\n2. if the patient lacks capacity, and it is not practicable or appropriate to contact those close to them.\r\nIf C1 or C2 has been selected without selecting C3, please document why involvement of those holding parental responsibility has not been possible."
+              },
+              "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0009]/items[openEHR-EHR-ADMIN_ENTRY.respect_involvement.v0]/data[at0001]/items[at0012]/items[at0007]/value",
+              "inputs" : [ {
+                "type" : "TEXT"
+              } ]
+            } ]
+          }, {
+            "id" : "language",
+            "name" : "Language",
+            "rmType" : "CODE_PHRASE",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0009]/items[openEHR-EHR-ADMIN_ENTRY.respect_involvement.v0]/language",
+            "inContext" : true
+          }, {
+            "id" : "encoding",
+            "name" : "Encoding",
+            "rmType" : "CODE_PHRASE",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0009]/items[openEHR-EHR-ADMIN_ENTRY.respect_involvement.v0]/encoding",
+            "inContext" : true
+          }, {
+            "id" : "subject",
+            "name" : "Subject",
+            "rmType" : "PARTY_PROXY",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0009]/items[openEHR-EHR-ADMIN_ENTRY.respect_involvement.v0]/subject",
+            "inContext" : true
+          } ]
+        } ]
+      }, {
+        "id" : "a7._clinician_signatures",
+        "name" : "7. Clinician signatures",
+        "localizedName" : "7. Clinician signatures",
+        "rmType" : "SECTION",
+        "nodeId" : "at0010",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "7. Clinician signatures"
+        },
+        "localizedDescriptions" : {
+          "en" : "Details of clinicians involved in making ReSPECT plan."
+        },
+        "annotations" : {
+          "comment" : "Implementation guidance - Add prompt to UI: The clinical signature is to indicate that the decision-making process has fully complied with relevant capacity and Human Rights legislation."
+        },
+        "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0010]",
+        "children" : [ {
+          "id" : "clinician_signature",
+          "name" : "Clinician signature",
+          "localizedName" : "Clinician signature",
+          "rmType" : "ACTION",
+          "nodeId" : "openEHR-EHR-ACTION.service.v0",
+          "min" : 0,
+          "max" : -1,
+          "localizedNames" : {
+            "en" : "Clinician signature"
+          },
+          "localizedDescriptions" : {
+            "en" : "A general clinical activity carried out for the patient to receive a specified service, advice or care from an expert healthcare provider."
+          },
+          "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0010]/items[openEHR-EHR-ACTION.service.v0,'Clinician signature']",
+          "children" : [ {
+            "id" : "ism_transition",
+            "name" : "Ism_transition",
+            "rmType" : "ISM_TRANSITION",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0010]/items[openEHR-EHR-ACTION.service.v0,'Clinician signature']/ism_transition",
+            "children" : [ {
+              "id" : "current_state",
+              "name" : "Current_state",
+              "rmType" : "DV_CODED_TEXT",
+              "min" : 1,
+              "max" : 1,
+              "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0010]/items[openEHR-EHR-ACTION.service.v0,'Clinician signature']/ism_transition/current_state",
+              "inputs" : [ {
+                "suffix" : "code",
+                "type" : "CODED_TEXT",
+                "list" : [ {
+                  "value" : "532"
+                } ]
+              } ],
+              "inContext" : true
+            }, {
+              "id" : "transition",
+              "name" : "Transition",
+              "rmType" : "DV_CODED_TEXT",
+              "min" : 0,
+              "max" : 1,
+              "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0010]/items[openEHR-EHR-ACTION.service.v0,'Clinician signature']/ism_transition/transition",
+              "inputs" : [ {
+                "suffix" : "code",
+                "type" : "TEXT"
+              }, {
+                "suffix" : "value",
+                "type" : "TEXT"
+              } ],
+              "inContext" : true
+            }, {
+              "id" : "careflow_step",
+              "name" : "Careflow_step",
+              "rmType" : "DV_CODED_TEXT",
+              "min" : 0,
+              "max" : 1,
+              "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0010]/items[openEHR-EHR-ACTION.service.v0,'Clinician signature']/ism_transition/careflow_step",
+              "inputs" : [ {
+                "suffix" : "code",
+                "type" : "CODED_TEXT",
+                "list" : [ {
+                  "value" : "at0005",
+                  "label" : "Service activity complete",
+                  "localizedLabels" : {
+                    "en" : "Service activity complete"
+                  },
+                  "currentStates" : [ "532" ]
+                } ]
+              } ],
+              "inContext" : true
+            } ],
+            "inContext" : true
+          }, {
+            "id" : "service_name",
+            "name" : "Service name",
+            "localizedName" : "Service name",
+            "rmType" : "DV_TEXT",
+            "nodeId" : "at0011",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Service name"
+            },
+            "localizedDescriptions" : {
+              "en" : "Identification of the clinical service to be/being carried out."
+            },
+            "annotations" : {
+              "comment" : "Coding of the specific service name with a terminology is preferred, where possible."
+            },
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0010]/items[openEHR-EHR-ACTION.service.v0,'Clinician signature']/description[at0001]/items[at0011]/value",
+            "inputs" : [ {
+              "type" : "TEXT",
+              "list" : [ {
+                "value" : "ReSPECT - clinician signature",
+                "label" : "ReSPECT - clinician signature"
+              }, {
+                "value" : "ReSPECT - senior responsible clinician signature",
+                "label" : "ReSPECT - senior responsible clinician signature"
+              } ],
+              "listOpen" : false
+            } ]
+          }, {
+            "id" : "time",
+            "name" : "Time",
+            "rmType" : "DV_DATE_TIME",
+            "min" : 1,
+            "max" : 1,
+            "annotations" : {
+              "view:VisibleInView" : "Review date"
+            },
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0010]/items[openEHR-EHR-ACTION.service.v0,'Clinician signature']/time",
+            "inputs" : [ {
+              "type" : "DATETIME"
+            } ],
+            "inContext" : true
+          }, {
+            "id" : "language",
+            "name" : "Language",
+            "rmType" : "CODE_PHRASE",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0010]/items[openEHR-EHR-ACTION.service.v0,'Clinician signature']/language",
+            "inContext" : true
+          }, {
+            "id" : "encoding",
+            "name" : "Encoding",
+            "rmType" : "CODE_PHRASE",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0010]/items[openEHR-EHR-ACTION.service.v0,'Clinician signature']/encoding",
+            "inContext" : true
+          }, {
+            "id" : "subject",
+            "name" : "Subject",
+            "rmType" : "PARTY_PROXY",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0010]/items[openEHR-EHR-ACTION.service.v0,'Clinician signature']/subject",
+            "inContext" : true
+          } ]
+        } ]
+      }, {
+        "id" : "a8._emergency_contacts",
+        "name" : "8. Emergency contacts",
+        "localizedName" : "8. Emergency contacts",
+        "rmType" : "SECTION",
+        "nodeId" : "at0011",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "8. Emergency contacts"
+        },
+        "localizedDescriptions" : {
+          "en" : "Details of emergency contacts for ReSPECT plan."
+        },
+        "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0011]",
+        "children" : [ {
+          "id" : "emergency_contacts",
+          "name" : "Emergency contacts",
+          "localizedName" : "Emergency contacts",
+          "rmType" : "ADMIN_ENTRY",
+          "nodeId" : "openEHR-EHR-ADMIN_ENTRY.care_team.v0",
+          "min" : 0,
+          "max" : 1,
+          "localizedNames" : {
+            "en" : "Emergency contacts"
+          },
+          "localizedDescriptions" : {
+            "en" : "Care team details aligned with FHIR resource. This is an ADMIN ENTRY wrapper archetype to contain the Care team CLUSTER archetype where it has no natural ENTRY level parent."
+          },
+          "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0011]/items[openEHR-EHR-ADMIN_ENTRY.care_team.v0,'Emergency contacts']",
+          "children" : [ {
+            "id" : "care_team",
+            "name" : "Care team",
+            "localizedName" : "Care team",
+            "rmType" : "CLUSTER",
+            "nodeId" : "openEHR-EHR-CLUSTER.care_team.v0",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Care team"
+            },
+            "localizedDescriptions" : {
+              "en" : "Care team details aligned with FHIR resource."
+            },
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0011]/items[openEHR-EHR-ADMIN_ENTRY.care_team.v0,'Emergency contacts']/data[at0001]/items[openEHR-EHR-CLUSTER.care_team.v0]",
+            "children" : [ {
+              "id" : "name",
+              "name" : "Name",
+              "localizedName" : "Name",
+              "rmType" : "DV_TEXT",
+              "nodeId" : "at0018",
+              "min" : 0,
+              "max" : 1,
+              "localizedNames" : {
+                "en" : "Name"
+              },
+              "localizedDescriptions" : {
+                "en" : "A label for human use intended to distinguish like teams."
+              },
+              "annotations" : {
+                "comment" : "E.g. the \"red\" vs. \"green\" trauma teams."
+              },
+              "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0011]/items[openEHR-EHR-ADMIN_ENTRY.care_team.v0,'Emergency contacts']/data[at0001]/items[openEHR-EHR-CLUSTER.care_team.v0]/items[at0018]/value",
+              "inputs" : [ {
+                "type" : "TEXT",
+                "list" : [ {
+                  "value" : "ReSPECT Emergency contacts",
+                  "label" : "ReSPECT Emergency contacts"
+                } ],
+                "listOpen" : false,
+                "defaultValue" : "ReSPECT Emergency contacts"
+              } ]
+            }, {
+              "id" : "participant",
+              "name" : "Participant",
+              "localizedName" : "Participant",
+              "rmType" : "CLUSTER",
+              "nodeId" : "at0021",
+              "min" : 0,
+              "max" : -1,
+              "localizedNames" : {
+                "en" : "Participant"
+              },
+              "localizedDescriptions" : {
+                "en" : "Identifies all people and organizations who are expected to be involved in the care team."
+              },
+              "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0011]/items[openEHR-EHR-ADMIN_ENTRY.care_team.v0,'Emergency contacts']/data[at0001]/items[openEHR-EHR-CLUSTER.care_team.v0]/items[at0021]",
+              "children" : [ {
+                "id" : "role_and_relationship",
+                "name" : "Role and Relationship",
+                "localizedName" : "Role and Relationship",
+                "rmType" : "DV_TEXT",
+                "nodeId" : "at0022",
+                "min" : 0,
+                "max" : -1,
+                "localizedNames" : {
+                  "en" : "Role and Relationship"
+                },
+                "localizedDescriptions" : {
+                  "en" : "Indicates specific responsibility of an individual within the care team, such as \"Primary care physician\", \"Trained social worker counselor\", \"Caregiver\", etc."
+                },
+                "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0011]/items[openEHR-EHR-ADMIN_ENTRY.care_team.v0,'Emergency contacts']/data[at0001]/items[openEHR-EHR-CLUSTER.care_team.v0]/items[at0021]/items[at0022,'Role and Relationship']/value",
+                "inputs" : [ {
+                  "type" : "TEXT",
+                  "list" : [ {
+                    "value" : "Primary emergency contact",
+                    "label" : "Primary emergency contact"
+                  } ],
+                  "listOpen" : true
+                } ]
+              }, {
+                "id" : "member",
+                "name" : "Member",
+                "localizedName" : "Member",
+                "rmType" : "CLUSTER",
+                "nodeId" : "openEHR-EHR-CLUSTER.contact_cc.v0",
+                "min" : 0,
+                "max" : 1,
+                "localizedNames" : {
+                  "en" : "Member"
+                },
+                "localizedDescriptions" : {
+                  "en" : "Contacts for patients and organisations (excluding practitioners)."
+                },
+                "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0011]/items[openEHR-EHR-ADMIN_ENTRY.care_team.v0,'Emergency contacts']/data[at0001]/items[openEHR-EHR-CLUSTER.care_team.v0]/items[at0021]/items[openEHR-EHR-CLUSTER.contact_cc.v0,'Member']",
+                "children" : [ {
+                  "id" : "name",
+                  "name" : "Name",
+                  "localizedName" : "Name",
+                  "rmType" : "CLUSTER",
+                  "nodeId" : "openEHR-EHR-CLUSTER.name_cc.v0",
+                  "min" : 0,
+                  "max" : -1,
+                  "localizedNames" : {
+                    "en" : "Name"
+                  },
+                  "localizedDescriptions" : {
+                    "en" : "Name details aligned with FHIR resource."
+                  },
+                  "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0011]/items[openEHR-EHR-ADMIN_ENTRY.care_team.v0,'Emergency contacts']/data[at0001]/items[openEHR-EHR-CLUSTER.care_team.v0]/items[at0021]/items[openEHR-EHR-CLUSTER.contact_cc.v0,'Member']/items[openEHR-EHR-CLUSTER.name_cc.v0]",
+                  "children" : [ {
+                    "id" : "use",
+                    "name" : "Use",
+                    "localizedName" : "Use",
+                    "rmType" : "DV_CODED_TEXT",
+                    "nodeId" : "at0001",
+                    "min" : 1,
+                    "max" : 1,
+                    "localizedNames" : {
+                      "en" : "Use"
+                    },
+                    "localizedDescriptions" : {
+                      "en" : "Identification of the purpose for the name."
+                    },
+                    "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0011]/items[openEHR-EHR-ADMIN_ENTRY.care_team.v0,'Emergency contacts']/data[at0001]/items[openEHR-EHR-CLUSTER.care_team.v0]/items[at0021]/items[openEHR-EHR-CLUSTER.contact_cc.v0,'Member']/items[openEHR-EHR-CLUSTER.name_cc.v0]/items[at0001]/value",
+                    "inputs" : [ {
+                      "suffix" : "code",
+                      "type" : "CODED_TEXT",
+                      "list" : [ {
+                        "value" : "at0002",
+                        "label" : "Usual",
+                        "localizedLabels" : {
+                          "en" : "Usual"
+                        },
+                        "localizedDescriptions" : {
+                          "en" : "The usual name."
+                        }
+                      } ]
+                    } ]
+                  }, {
+                    "id" : "contact_name",
+                    "name" : "Contact name",
+                    "localizedName" : "Contact name",
+                    "rmType" : "DV_TEXT",
+                    "nodeId" : "at0009",
+                    "min" : 0,
+                    "max" : 1,
+                    "localizedNames" : {
+                      "en" : "Contact name"
+                    },
+                    "localizedDescriptions" : {
+                      "en" : "A text representation of the full name."
+                    },
+                    "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0011]/items[openEHR-EHR-ADMIN_ENTRY.care_team.v0,'Emergency contacts']/data[at0001]/items[openEHR-EHR-CLUSTER.care_team.v0]/items[at0021]/items[openEHR-EHR-CLUSTER.contact_cc.v0,'Member']/items[openEHR-EHR-CLUSTER.name_cc.v0]/items[at0009,'Contact name']/value",
+                    "inputs" : [ {
+                      "type" : "TEXT"
+                    } ]
+                  } ]
+                }, {
+                  "id" : "telephone",
+                  "name" : "Telephone",
+                  "localizedName" : "Telephone",
+                  "rmType" : "CLUSTER",
+                  "nodeId" : "openEHR-EHR-CLUSTER.telecom_cc.v0",
+                  "min" : 0,
+                  "max" : -1,
+                  "localizedNames" : {
+                    "en" : "Telephone"
+                  },
+                  "localizedDescriptions" : {
+                    "en" : "FHIR telecom details."
+                  },
+                  "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0011]/items[openEHR-EHR-ADMIN_ENTRY.care_team.v0,'Emergency contacts']/data[at0001]/items[openEHR-EHR-CLUSTER.care_team.v0]/items[at0021]/items[openEHR-EHR-CLUSTER.contact_cc.v0,'Member']/items[openEHR-EHR-CLUSTER.telecom_cc.v0,'Telephone']",
+                  "children" : [ {
+                    "id" : "system",
+                    "name" : "System",
+                    "localizedName" : "System",
+                    "rmType" : "DV_CODED_TEXT",
+                    "nodeId" : "at0001",
+                    "min" : 0,
+                    "max" : 1,
+                    "localizedNames" : {
+                      "en" : "System"
+                    },
+                    "localizedDescriptions" : {
+                      "en" : "Telecommunications form for contact point - what communications system is required to make use of the contact."
+                    },
+                    "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0011]/items[openEHR-EHR-ADMIN_ENTRY.care_team.v0,'Emergency contacts']/data[at0001]/items[openEHR-EHR-CLUSTER.care_team.v0]/items[at0021]/items[openEHR-EHR-CLUSTER.contact_cc.v0,'Member']/items[openEHR-EHR-CLUSTER.telecom_cc.v0,'Telephone']/items[at0001]/value",
+                    "inputs" : [ {
+                      "suffix" : "code",
+                      "type" : "CODED_TEXT",
+                      "list" : [ {
+                        "value" : "at0012",
+                        "label" : "Phone",
+                        "localizedLabels" : {
+                          "en" : "Phone"
+                        },
+                        "localizedDescriptions" : {
+                          "en" : "The communication form is phone."
+                        }
+                      } ]
+                    } ]
+                  }, {
+                    "id" : "telephone_number",
+                    "name" : "Telephone number",
+                    "localizedName" : "Telephone number",
+                    "rmType" : "DV_TEXT",
+                    "nodeId" : "at0002",
+                    "min" : 0,
+                    "max" : 1,
+                    "localizedNames" : {
+                      "en" : "Telephone number"
+                    },
+                    "localizedDescriptions" : {
+                      "en" : "The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address)."
+                    },
+                    "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0011]/items[openEHR-EHR-ADMIN_ENTRY.care_team.v0,'Emergency contacts']/data[at0001]/items[openEHR-EHR-CLUSTER.care_team.v0]/items[at0021]/items[openEHR-EHR-CLUSTER.contact_cc.v0,'Member']/items[openEHR-EHR-CLUSTER.telecom_cc.v0,'Telephone']/items[at0002,'Telephone number']/value",
+                    "inputs" : [ {
+                      "type" : "TEXT"
+                    } ]
+                  } ]
+                } ]
+              }, {
+                "id" : "other_details_about_contact",
+                "name" : "Other details about contact",
+                "localizedName" : "Other details about contact",
+                "rmType" : "DV_TEXT",
+                "nodeId" : "at0030",
+                "min" : 0,
+                "max" : 1,
+                "localizedNames" : {
+                  "en" : "Other details about contact"
+                },
+                "localizedDescriptions" : {
+                  "en" : "Comments made about the participant."
+                },
+                "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0011]/items[openEHR-EHR-ADMIN_ENTRY.care_team.v0,'Emergency contacts']/data[at0001]/items[openEHR-EHR-CLUSTER.care_team.v0]/items[at0021]/items[at0030,'Other details about contact']/value",
+                "inputs" : [ {
+                  "type" : "TEXT"
+                } ]
+              } ]
+            } ]
+          }, {
+            "id" : "language",
+            "name" : "Language",
+            "rmType" : "CODE_PHRASE",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0011]/items[openEHR-EHR-ADMIN_ENTRY.care_team.v0,'Emergency contacts']/language",
+            "inContext" : true
+          }, {
+            "id" : "encoding",
+            "name" : "Encoding",
+            "rmType" : "CODE_PHRASE",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0011]/items[openEHR-EHR-ADMIN_ENTRY.care_team.v0,'Emergency contacts']/encoding",
+            "inContext" : true
+          }, {
+            "id" : "subject",
+            "name" : "Subject",
+            "rmType" : "PARTY_PROXY",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0011]/items[openEHR-EHR-ADMIN_ENTRY.care_team.v0,'Emergency contacts']/subject",
+            "inContext" : true
+          } ]
+        } ]
+      }, {
+        "id" : "a9._review_of_plan",
+        "name" : "9. Review of Plan",
+        "localizedName" : "9. Review of Plan",
+        "rmType" : "SECTION",
+        "nodeId" : "at0012",
+        "min" : 0,
+        "max" : 1,
+        "localizedNames" : {
+          "en" : "9. Review of Plan"
+        },
+        "localizedDescriptions" : {
+          "en" : "Details of review dates and clinician for the confirmation of validity (e.g. for change of condition)."
+        },
+        "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0012]",
+        "children" : [ {
+          "id" : "review_of_plan",
+          "name" : "Review of plan",
+          "localizedName" : "Review of plan",
+          "rmType" : "ACTION",
+          "nodeId" : "openEHR-EHR-ACTION.service.v0",
+          "min" : 0,
+          "max" : -1,
+          "localizedNames" : {
+            "en" : "Review of plan"
+          },
+          "localizedDescriptions" : {
+            "en" : "A general clinical activity carried out for the patient to receive a specified service, advice or care from an expert healthcare provider."
+          },
+          "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0012]/items[openEHR-EHR-ACTION.service.v0,'Review of plan']",
+          "children" : [ {
+            "id" : "ism_transition",
+            "name" : "Ism_transition",
+            "rmType" : "ISM_TRANSITION",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0012]/items[openEHR-EHR-ACTION.service.v0,'Review of plan']/ism_transition",
+            "children" : [ {
+              "id" : "current_state",
+              "name" : "Current_state",
+              "rmType" : "DV_CODED_TEXT",
+              "min" : 1,
+              "max" : 1,
+              "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0012]/items[openEHR-EHR-ACTION.service.v0,'Review of plan']/ism_transition/current_state",
+              "inputs" : [ {
+                "suffix" : "code",
+                "type" : "CODED_TEXT",
+                "list" : [ {
+                  "value" : "532"
+                } ]
+              } ],
+              "inContext" : true
+            }, {
+              "id" : "transition",
+              "name" : "Transition",
+              "rmType" : "DV_CODED_TEXT",
+              "min" : 0,
+              "max" : 1,
+              "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0012]/items[openEHR-EHR-ACTION.service.v0,'Review of plan']/ism_transition/transition",
+              "inputs" : [ {
+                "suffix" : "code",
+                "type" : "TEXT"
+              }, {
+                "suffix" : "value",
+                "type" : "TEXT"
+              } ],
+              "inContext" : true
+            }, {
+              "id" : "careflow_step",
+              "name" : "Careflow_step",
+              "rmType" : "DV_CODED_TEXT",
+              "min" : 0,
+              "max" : 1,
+              "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0012]/items[openEHR-EHR-ACTION.service.v0,'Review of plan']/ism_transition/careflow_step",
+              "inputs" : [ {
+                "suffix" : "code",
+                "type" : "CODED_TEXT",
+                "list" : [ {
+                  "value" : "at0005",
+                  "label" : "Service activity complete",
+                  "localizedLabels" : {
+                    "en" : "Service activity complete"
+                  },
+                  "currentStates" : [ "532" ]
+                } ]
+              } ],
+              "inContext" : true
+            } ],
+            "inContext" : true
+          }, {
+            "id" : "service_name",
+            "name" : "Service name",
+            "localizedName" : "Service name",
+            "rmType" : "DV_TEXT",
+            "nodeId" : "at0011",
+            "min" : 0,
+            "max" : 1,
+            "localizedNames" : {
+              "en" : "Service name"
+            },
+            "localizedDescriptions" : {
+              "en" : "Identification of the clinical service to be/being carried out."
+            },
+            "annotations" : {
+              "comment" : "Coding of the specific service name with a terminology is preferred, where possible."
+            },
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0012]/items[openEHR-EHR-ACTION.service.v0,'Review of plan']/description[at0001]/items[at0011]/value",
+            "inputs" : [ {
+              "type" : "TEXT",
+              "defaultValue" : "ReSPECT clinical review"
+            } ]
+          }, {
+            "id" : "time",
+            "name" : "Time",
+            "rmType" : "DV_DATE_TIME",
+            "min" : 1,
+            "max" : 1,
+            "annotations" : {
+              "view:VisibleInView" : "Review date"
+            },
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0012]/items[openEHR-EHR-ACTION.service.v0,'Review of plan']/time",
+            "inputs" : [ {
+              "type" : "DATETIME"
+            } ],
+            "inContext" : true
+          }, {
+            "id" : "language",
+            "name" : "Language",
+            "rmType" : "CODE_PHRASE",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0012]/items[openEHR-EHR-ACTION.service.v0,'Review of plan']/language",
+            "inContext" : true
+          }, {
+            "id" : "encoding",
+            "name" : "Encoding",
+            "rmType" : "CODE_PHRASE",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0012]/items[openEHR-EHR-ACTION.service.v0,'Review of plan']/encoding",
+            "inContext" : true
+          }, {
+            "id" : "subject",
+            "name" : "Subject",
+            "rmType" : "PARTY_PROXY",
+            "min" : 1,
+            "max" : 1,
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0012]/items[openEHR-EHR-ACTION.service.v0,'Review of plan']/subject",
+            "inContext" : true
+          } ]
+        } ]
+      } ]
+    }, {
+      "id" : "category",
+      "rmType" : "DV_CODED_TEXT",
+      "nodeId" : "",
+      "min" : 1,
+      "max" : 1,
+      "aqlPath" : "/category",
+      "inputs" : [ {
+        "suffix" : "code",
+        "type" : "CODED_TEXT",
+        "list" : [ {
+          "value" : "433",
+          "localizedLabels" : {
+            "en" : ""
+          }
+        } ],
+        "terminology" : "openehr"
+      } ],
+      "inContext" : true
+    }, {
+      "id" : "language",
+      "name" : "Language",
+      "rmType" : "CODE_PHRASE",
+      "min" : 1,
+      "max" : 1,
+      "aqlPath" : "/language",
+      "inContext" : true
+    }, {
+      "id" : "territory",
+      "name" : "Territory",
+      "rmType" : "CODE_PHRASE",
+      "min" : 1,
+      "max" : 1,
+      "aqlPath" : "/territory",
+      "inContext" : true
+    }, {
+      "id" : "composer",
+      "name" : "Composer",
+      "rmType" : "PARTY_PROXY",
+      "min" : 1,
+      "max" : 1,
+      "aqlPath" : "/composer",
+      "inContext" : true
+    } ]
+  }
+}
