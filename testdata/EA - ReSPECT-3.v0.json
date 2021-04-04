@@ -879,26 +879,26 @@
         },
         "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]",
         "children" : [ {
-          "id" : "mental_capacity_assessment",
-          "name" : "Mental capacity assessment",
-          "localizedName" : "Mental capacity assessment",
-          "rmType" : "OBSERVATION",
-          "nodeId" : "openEHR-EHR-OBSERVATION.mental_capacity_assessment.v0",
+          "id" : "mental_capacity",
+          "name" : "Mental capacity",
+          "localizedName" : "Mental capacity",
+          "rmType" : "EVALUATION",
+          "nodeId" : "openEHR-EHR-EVALUATION.mental_capacity.v0",
           "min" : 0,
           "max" : 1,
           "localizedNames" : {
-            "en" : "Mental capacity assessment"
+            "en" : "Mental capacity"
           },
           "localizedDescriptions" : {
-            "en" : "The ability of an individual to use and understand information to make or consent to a decision, plan or intervention."
+            "en" : "The ability of an individual to use and understand information to make a decision or plan."
           },
-          "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-OBSERVATION.mental_capacity_assessment.v0]",
+          "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-EVALUATION.mental_capacity.v0]",
           "children" : [ {
             "id" : "decision_plan",
             "name" : "Decision/plan",
             "localizedName" : "Decision/plan",
             "rmType" : "DV_TEXT",
-            "nodeId" : "at0004",
+            "nodeId" : "at0009",
             "min" : 0,
             "max" : 1,
             "localizedNames" : {
@@ -907,16 +907,17 @@
             "localizedDescriptions" : {
               "en" : "Description of the specific decision or plan to which the mental capacity status and assessment details relate."
             },
-            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-OBSERVATION.mental_capacity_assessment.v0]/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value",
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-EVALUATION.mental_capacity.v0]/data[at0001]/items[at0009]/value",
             "inputs" : [ {
-              "type" : "TEXT"
+              "type" : "TEXT",
+              "defaultValue" : "ReSPECT recommendations"
             } ]
           }, {
             "id" : "does_the_person_have_capacity_to_participate_in_making_recommendations_on_this_plan",
             "name" : "Does the person have capacity to participate in making recommendations on this plan?",
             "localizedName" : "Does the person have capacity to participate in making recommendations on this plan?",
             "rmType" : "DV_CODED_TEXT",
-            "nodeId" : "at0005",
+            "nodeId" : "at0002",
             "min" : 0,
             "max" : 1,
             "localizedNames" : {
@@ -925,12 +926,12 @@
             "localizedDescriptions" : {
               "en" : "The individual's mental capacity status."
             },
-            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-OBSERVATION.mental_capacity_assessment.v0]/data[at0001]/events[at0002]/data[at0003]/items[at0005,'Does the person have capacity to participate in making recommendations on this plan?']/value",
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-EVALUATION.mental_capacity.v0]/data[at0001]/items[at0002,'Does the person have capacity to participate in making recommendations on this plan?']/value",
             "inputs" : [ {
               "suffix" : "code",
               "type" : "CODED_TEXT",
               "list" : [ {
-                "value" : "at0006",
+                "value" : "at0003",
                 "label" : "Has capacity",
                 "localizedLabels" : {
                   "en" : "Has capacity"
@@ -939,22 +940,13 @@
                   "en" : "The individual has sufficient mental capacity to make the decision or plan."
                 }
               }, {
-                "value" : "at0007",
+                "value" : "at0004",
                 "label" : "Does not have capacity",
                 "localizedLabels" : {
                   "en" : "Does not have capacity"
                 },
                 "localizedDescriptions" : {
                   "en" : "The individual does not have sufficient mental capacity to make the decision or plan."
-                }
-              }, {
-                "value" : "at0008",
-                "label" : "Indeterminate",
-                "localizedLabels" : {
-                  "en" : "Indeterminate"
-                },
-                "localizedDescriptions" : {
-                  "en" : "It has not been able to determinate whether the individual has sufficient mental capacity to make decision or plan."
                 }
               } ]
             } ]
@@ -963,7 +955,7 @@
             "name" : "If no, in what way does this person lack capacity?",
             "localizedName" : "If no, in what way does this person lack capacity?",
             "rmType" : "DV_TEXT",
-            "nodeId" : "at0009",
+            "nodeId" : "at0006",
             "min" : 0,
             "max" : 1,
             "localizedNames" : {
@@ -972,28 +964,17 @@
             "localizedDescriptions" : {
               "en" : "Narrative description of the individual's mental capacity."
             },
-            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-OBSERVATION.mental_capacity_assessment.v0]/data[at0001]/events[at0002]/data[at0003]/items[at0009,'If no, in what way does this person lack capacity?']/value",
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-EVALUATION.mental_capacity.v0]/data[at0001]/items[at0006,'If no, in what way does this person lack capacity?']/value",
             "inputs" : [ {
               "type" : "TEXT"
             } ]
-          }, {
-            "id" : "time",
-            "name" : "Time",
-            "rmType" : "DV_DATE_TIME",
-            "min" : 1,
-            "max" : 1,
-            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-OBSERVATION.mental_capacity_assessment.v0]/data[at0001]/events[at0002]/time",
-            "inputs" : [ {
-              "type" : "DATETIME"
-            } ],
-            "inContext" : true
           }, {
             "id" : "language",
             "name" : "Language",
             "rmType" : "CODE_PHRASE",
             "min" : 1,
             "max" : 1,
-            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-OBSERVATION.mental_capacity_assessment.v0]/language",
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-EVALUATION.mental_capacity.v0]/language",
             "inContext" : true
           }, {
             "id" : "encoding",
@@ -1001,7 +982,7 @@
             "rmType" : "CODE_PHRASE",
             "min" : 1,
             "max" : 1,
-            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-OBSERVATION.mental_capacity_assessment.v0]/encoding",
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-EVALUATION.mental_capacity.v0]/encoding",
             "inContext" : true
           }, {
             "id" : "subject",
@@ -1009,7 +990,7 @@
             "rmType" : "PARTY_PROXY",
             "min" : 1,
             "max" : 1,
-            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-OBSERVATION.mental_capacity_assessment.v0]/subject",
+            "aqlPath" : "/content[openEHR-EHR-SECTION.respect_headings.v0]/items[at0008]/items[openEHR-EHR-EVALUATION.mental_capacity.v0]/subject",
             "inContext" : true
           } ]
         } ]

@@ -25,6 +25,7 @@ export class DocBuilder {
     this.sb.append(`== Metadata`).newline();
     this.sb.append(`TemplateId:: ${this.wt.templateId}`).newline();
     this.sb.append(`Archetype:: ${f.nodeId}`).newline();
+    this.sb.append(`Root name:: ${f.name}`).newline();
     this.sb.newline();
     this.walk(this.wt.tree);
   }
@@ -55,7 +56,7 @@ export class DocBuilder {
         case 'ISM_TRANSITION':
           break;
         case 'EVENT_CONTEXT':
-          f.name = 'EVENT_CONTEXT';
+          f.name = 'Context';
           this.walkEntry(f);
           break;
         case 'CODE_PHRASE':
@@ -79,15 +80,19 @@ export class DocBuilder {
     }
   }
   private walkEntry(f: FormElement) {
-    this.sb.append(`== ${f.name}`);
+
+    const nodeId = f.nodeId?f.nodeId:`RM:${f.name}`
+
+    this.sb.append(`=== ${f.name}`);
     this.sb.append('[options="header", cols="3,3,5,5,30"]');
     this.sb.append('|====');
-    this.sb.append('|NodeId|Attr.|RM Type| Navn |Beskrivelse');
-    this.sb.append(`5+a|*${f.name}* + \n${f.rmType}: _${f.nodeId}_`);
+    this.sb.append('|NodeId|Attr.|RM Type| Name | Description');
+    this.sb.append(`5+a|*${f.name}* + \n${f.rmType}: _${nodeId}_`);
     if (f.children) {
       f.children.forEach((child) => {
         if (child.inContext !== undefined && child.inContext) {
           // Will not document things in contexts (which is included in openEHR RM)
+          this.walk(child);
         } else {
           this.walk(child);
         }
@@ -97,7 +102,9 @@ export class DocBuilder {
   }
   private walkElement(f: FormElement) {
     const max = f.max < 0 ? '*' : `${f.max}`;
-    this.sb.append(`|${f.nodeId}| ${f.min}..${max}| ${f.rmType} | ${f.name}`);
+
+    const nodeId = f.nodeId?f.nodeId:`RM: ${f.id}`
+    this.sb.append(`|${nodeId}| ${f.min}..${max}| ${f.rmType} | ${f.name}`);
 
     if (f.name === undefined) this.sb.append(`// ${f.id} -  ${f.aqlPath}`);
 
@@ -150,6 +157,7 @@ export class DocBuilder {
 
   private walkCodePhrase(f: FormElement) {
     this.sb.append('|');
+    this.sb.append('Code_phrase')
   }
 
   private walkDvIdentifier(f: FormElement) {
