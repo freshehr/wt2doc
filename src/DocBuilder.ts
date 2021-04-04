@@ -54,6 +54,7 @@ export class DocBuilder {
           this.walkChildren(f);
           break;
         case 'ISM_TRANSITION':
+          this.walkChildren(f);
           break;
         case 'EVENT_CONTEXT':
           f.name = 'Context';
@@ -61,7 +62,7 @@ export class DocBuilder {
           break;
         case 'CODE_PHRASE':
           f.name = 'CODE_PHRASE';
-          this.walkCodePhrase(f);
+          this.walkChildren(f);
           break;
 
         default:
@@ -81,7 +82,7 @@ export class DocBuilder {
   }
   private walkEntry(f: FormElement) {
 
-    const nodeId = f.nodeId?f.nodeId:`RM:${f.name}`
+    const nodeId = f.nodeId?f.nodeId:`RM:${f.id}`
 
     this.sb.append(`=== ${f.name}`);
     this.sb.append('[options="header", cols="3,3,5,5,30"]');
@@ -103,7 +104,7 @@ export class DocBuilder {
   private walkElement(f: FormElement) {
     const max = f.max < 0 ? '*' : `${f.max}`;
 
-    const nodeId = f.nodeId?f.nodeId:`RM: ${f.id}`
+    const nodeId = f.nodeId?f.nodeId:`RM: ${f.id}`;
     this.sb.append(`|${nodeId}| ${f.min}..${max}| ${f.rmType} | ${f.name}`);
 
     if (f.name === undefined) this.sb.append(`// ${f.id} -  ${f.aqlPath}`);
@@ -193,6 +194,8 @@ export class DocBuilder {
   private walkDvQuantity(f: FormElement) {
     this.sb.append('|');
   }
+
+
   private walkDvText(f: FormElement) {
     this.sb.append('a|');
     if (f.inputs) {
@@ -202,6 +205,8 @@ export class DocBuilder {
             this.sb.append(`* ${val.value}`);
           });
         }
+        if (item.listOpen)
+          this.sb.append( `* _Other text allowed_`);
       });
     }
   }
@@ -221,6 +226,8 @@ export class DocBuilder {
               this.sb.append(`* ${list.label} (${term}: ${list.value})`);
             }
           });
+          if (item.listOpen)
+            this.sb.append( `* _Other text allowed_`);
         }
       });
     }
