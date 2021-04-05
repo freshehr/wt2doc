@@ -1,89 +1,202 @@
-= ReSPECT-3
+= EA - ReSPECT-3.v0
 
 
-== Metadata
+== *ReSPECT-3*
 
 
-TemplateId:: EA - ReSPECT-3.v0
+=== `COMPOSITION: _openEHR-EHR-COMPOSITION.report.v1_`
 
 
-Archetype:: openEHR-EHR-COMPOSITION.report.v1
-
-
-Root name:: ReSPECT-3
-
-
-
-
-// Not supported rmType COMPOSITION
-=== Context
-===== `EVENT_CONTEXT: _RM:context_`
-[options="header", cols="3,3,5,5,30"]
+===== RM attributes
+[options="header", cols="5,3,5,5,30"]
 |====
 |NodeId|Attr.|RM Type| Name | Description
-|at0005| 0..1| DV_TEXT | Status
+|RM: + 
+ `language`| 1..1| CODE_PHRASE | language
+|
+|RM: + 
+ `territory`| 1..1| CODE_PHRASE | territory
+|
+|RM: + 
+ `composer`| 1..1| PARTY_PROXY | composer
+|
+|====
+===== _Participations_ [0..*]
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|RM: function|1..1|DV_TEXT| Role | The function of the Party in this participation
+|RM: performer|1..1|PARTY_IDENTIFIED| Performer name and ID | The id and possibly demographic system link of the party participating in the activity.
+|====
+=== context
+===== `EVENT_CONTEXT: _`RM:context`_`
+===== RM attributes
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|RM: + 
+ `start_time`| 1..1| DV_DATE_TIME | Start_time
+|
+|RM: + 
+ `setting`| 1..1| DV_CODED_TEXT | Setting
+a|
+|====
+===== _Participations_ [0..*]
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|RM: function|1..1|DV_TEXT| Role | The function of the Party in this participation
+|RM: performer|1..1|PARTY_IDENTIFIED| Performer name and ID | The id and possibly demographic system link of the party participating in the activity.
+|====
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|at0005 + 
+ `status`| 0..1| DV_TEXT | Status
 a|
 * Started
 * Partially complete
 * Complete and signed
+
+
+The status of the entire report. Note: This is not the status of any of the report components.
 5+a|*XDS Metadata* +
  `CLUSTER: _openEHR-EHR-CLUSTER.xds_metadata.v0_`
-|at0001| 0..1| DV_TEXT | Author specialty
-a|
-|at0003| 0..1| DV_CODED_TEXT | Document type
+|at0001 + 
+ `author_specialty`| 0..1| DV_TEXT | Author specialty
 a|
 
 
-for example:  Pulmonary History and Physical, Discharge Summary, Ultrasound Report.
+The speciality of the author/composer of the document.
+|at0003 + 
+ `document_type`| 0..1| DV_CODED_TEXT | Document type
+a|
+
+
+Comment: for example:  Pulmonary History and Physical, Discharge Summary, Ultrasound Report.
 These codes are specific to an XDS Affinity Domain.
-|RM: start_time| 1..1| DV_DATE_TIME | Start_time
-|
-|RM: setting| 1..1| DV_CODED_TEXT | Setting
-a|
 |====
 == ReSPECT headings
 == 2. Shared understanding
 === ReSPECT Summary
 ===== `EVALUATION: _openEHR-EHR-EVALUATION.clinical_synopsis.v1_`
-[options="header", cols="3,3,5,5,30"]
+===== RM attributes
+[options="header", cols="5,3,5,5,30"]
 |====
 |NodeId|Attr.|RM Type| Name | Description
-|at0002| 1..1| DV_TEXT | Narrative Summary
+|RM: + 
+ `language`| 1..1| CODE_PHRASE | language
+|
+|RM: + 
+ `encoding`| 1..1| CODE_PHRASE | encoding
+|
+|RM: + 
+ `subject`| 1..1| PARTY_PROXY | subject
+|
+|====
+===== _Participations_ [0..*]
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|RM: function|1..1|DV_TEXT| Role | The function of the Party in this participation
+|RM: performer|1..1|PARTY_IDENTIFIED| Performer name and ID | The id and possibly demographic system link of the party participating in the activity.
+|====
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|at0002 + 
+ `narrative_summary`| 1..1| DV_TEXT | Narrative Summary
 a|
-// Not supported rmType PARTY_PROXY
+
+
+The summary, assessment, conclusions or evaluation of the clinical findings.
 |====
 == Details of other relevant care planning documents and where to find them
 === Advance planning document
 ===== `EVALUATION: _openEHR-EHR-EVALUATION.advance_care_directive.v1_`
-[options="header", cols="3,3,5,5,30"]
+===== RM attributes
+[options="header", cols="5,3,5,5,30"]
 |====
 |NodeId|Attr.|RM Type| Name | Description
-|at0006| 0..1| DV_TEXT | Description
+|RM: + 
+ `language`| 1..1| CODE_PHRASE | language
+|
+|RM: + 
+ `encoding`| 1..1| CODE_PHRASE | encoding
+|
+|RM: + 
+ `subject`| 1..1| PARTY_PROXY | subject
+|
+|====
+===== _Participations_ [0..*]
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|RM: function|1..1|DV_TEXT| Role | The function of the Party in this participation
+|RM: performer|1..1|PARTY_IDENTIFIED| Performer name and ID | The id and possibly demographic system link of the party participating in the activity.
+|====
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|at0006 + 
+ `description`| 0..1| DV_TEXT | Description
 a|
 
 
-May be used to record a narrative overview of the complete advance care directive, which may or may not be supported by structured data. Details of specific structured findings can be included using CLUSTER archetypes in the 'Directive details' slot. This data element may be used to capture legacy data that is not available in a structured format.
+Narrative description of the overall advance care directive.
+
+
+Comment: May be used to record a narrative overview of the complete advance care directive, which may or may not be supported by structured data. Details of specific structured findings can be included using CLUSTER archetypes in the 'Directive details' slot. This data element may be used to capture legacy data that is not available in a structured format.
 5+a|*Directive location* +
  `CLUSTER: _at0058_`
-|at0030| 0..1| DV_TEXT | Location
+|at0030 + 
+ `location`| 0..1| DV_TEXT | Location
 a|
 
 
-For example, 'In the top drawer of the bedside table'.
-// Not supported rmType PARTY_PROXY
+Information regarding where the advance care directive is stored and how to gain access to it.
+
+
+Comment: For example, 'In the top drawer of the bedside table'.
 |====
 == Legal welfare proxies
 === Legal welfare proxy in place
 ===== `ADMIN_ENTRY: _openEHR-EHR-ADMIN_ENTRY.legal_authority.v0_`
-[options="header", cols="3,3,5,5,30"]
+===== RM attributes
+[options="header", cols="5,3,5,5,30"]
 |====
 |NodeId|Attr.|RM Type| Name | Description
-|at0002| 0..1| DV_TEXT | Type
+|RM: + 
+ `language`| 1..1| CODE_PHRASE | language
+|
+|RM: + 
+ `encoding`| 1..1| CODE_PHRASE | encoding
+|
+|RM: + 
+ `subject`| 1..1| PARTY_PROXY | subject
+|
+|====
+===== _Participations_ [0..*]
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|RM: function|1..1|DV_TEXT| Role | The function of the Party in this participation
+|RM: performer|1..1|PARTY_IDENTIFIED| Performer name and ID | The id and possibly demographic system link of the party participating in the activity.
+|====
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|at0002 + 
+ `type`| 0..1| DV_TEXT | Type
 a|
 
 
-Coding of the type of legal directive or order with a terminology is preferred, where possible. It is expected that this is largely localised to reflect local policy and legislation. For example, 'Welfare Power of Attorney', 'Welfare Guardianship Order' or 'Emergency Detention Order'.
-|at0004| 0..1| DV_CODED_TEXT | Status
+The type of legal directive or order that applies to the individual.
+
+
+Comment: Coding of the type of legal directive or order with a terminology is preferred, where possible. It is expected that this is largely localised to reflect local policy and legislation. For example, 'Welfare Power of Attorney', 'Welfare Guardianship Order' or 'Emergency Detention Order'.
+|at0004 + 
+ `status`| 0..1| DV_CODED_TEXT | Status
 a|
 * at0005 -> Present 
 * at0006 -> Absent 
@@ -91,195 +204,457 @@ a|
 * _Other text allowed_
 
 
-Coding of the legal directive or order status with a terminology is preferred, where possible.
-// Not supported rmType PARTY_PROXY
+The status of the legal directive or order.
+
+
+Comment: Coding of the legal directive or order status with a terminology is preferred, where possible.
 |====
 == 3. What matters to me
 === What matters to me
 ===== `EVALUATION: _openEHR-EHR-EVALUATION.about_me.v0_`
-[options="header", cols="3,3,5,5,30"]
+===== RM attributes
+[options="header", cols="5,3,5,5,30"]
 |====
 |NodeId|Attr.|RM Type| Name | Description
-|at0002| 0..1| DV_TEXT | What I most value
+|RM: + 
+ `language`| 1..1| CODE_PHRASE | language
+|
+|RM: + 
+ `encoding`| 1..1| CODE_PHRASE | encoding
+|
+|RM: + 
+ `subject`| 1..1| PARTY_PROXY | subject
+|
+|====
+===== _Participations_ [0..*]
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|RM: function|1..1|DV_TEXT| Role | The function of the Party in this participation
+|RM: performer|1..1|PARTY_IDENTIFIED| Performer name and ID | The id and possibly demographic system link of the party participating in the activity.
+|====
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|at0002 + 
+ `what_i_most_value`| 0..1| DV_TEXT | What I most value
 a|
-|at0002| 0..1| DV_TEXT | What I most fear / wish to avoid
+
+
+
+|at0002 + 
+ `what_i_most_fear_wish_to_avoid`| 0..1| DV_TEXT | What I most fear / wish to avoid
 a|
-// Not supported rmType PARTY_PROXY
+
+
+
 |====
 == 4. Clinical recommendations
 === Recommendation
 ===== `EVALUATION: _openEHR-EHR-EVALUATION.recommendation.v1_`
-[options="header", cols="3,3,5,5,30"]
+===== RM attributes
+[options="header", cols="5,3,5,5,30"]
 |====
 |NodeId|Attr.|RM Type| Name | Description
-|at0006| 0..1| DV_TEXT | Topic
+|RM: + 
+ `language`| 1..1| CODE_PHRASE | language
+|
+|RM: + 
+ `encoding`| 1..1| CODE_PHRASE | encoding
+|
+|RM: + 
+ `subject`| 1..1| PARTY_PROXY | subject
+|
+|====
+===== _Participations_ [0..*]
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|RM: function|1..1|DV_TEXT| Role | The function of the Party in this participation
+|RM: performer|1..1|PARTY_IDENTIFIED| Performer name and ID | The id and possibly demographic system link of the party participating in the activity.
+|====
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|at0006 + 
+ `topic`| 0..1| DV_TEXT | Topic
 a|
 
 
-Useful if multiple types of recommendations are made at the same time, and within the same data set.
-|at0002| 0..1| DV_TEXT | Clinical focus
+The topic or subject of the recommendation.
+
+
+Comment: Useful if multiple types of recommendations are made at the same time, and within the same data set.
+|at0002 + 
+ `clinical_focus`| 0..1| DV_TEXT | Clinical focus
 a|
 * Prioritise extending life
 * Balance extending life with comfort and valued outcomes
 * Prioritise comfort
 
 
-May be coded, using a terminology, if required.
-|at0003| 0..1| DV_TEXT | Clinical guidance on interventions
+Narrative description of the recommendation.
+
+
+Comment: May be coded, using a terminology, if required.
+|at0003 + 
+ `clinical_guidance_on_interventions`| 0..1| DV_TEXT | Clinical guidance on interventions
 a|
 
 
+Justifications for the recommendation.
 
-// Not supported rmType PARTY_PROXY
+
+Comment: undefined
 |====
 === CPR decision
 ===== `EVALUATION: _openEHR-EHR-EVALUATION.cpr_decision_uk.v0_`
-[options="header", cols="3,3,5,5,30"]
+===== RM attributes
+[options="header", cols="5,3,5,5,30"]
 |====
 |NodeId|Attr.|RM Type| Name | Description
-|at0003| 0..1| DV_CODED_TEXT | CPR decision
+|RM: + 
+ `language`| 1..1| CODE_PHRASE | language
+|
+|RM: + 
+ `encoding`| 1..1| CODE_PHRASE | encoding
+|
+|RM: + 
+ `subject`| 1..1| PARTY_PROXY | subject
+|
+|====
+===== _Participations_ [0..*]
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|RM: function|1..1|DV_TEXT| Role | The function of the Party in this participation
+|RM: performer|1..1|PARTY_IDENTIFIED| Performer name and ID | The id and possibly demographic system link of the party participating in the activity.
+|====
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|at0003 + 
+ `cpr_decision`| 0..1| DV_CODED_TEXT | CPR decision
 a|
 * at0004 -> CPR attempts recommended adult or child 
 * at0005 -> CPR attempts not recommended adult or child. 
 * at0022 -> CPR decision status unknown 
 * at0027 -> For modified CPR child only 
-|at0002| 0..1| DV_DATE_TIME | Date of CPR decision
+
+
+The advance recommendation as to whether cardiopulmonary resuscitation (CPR) should be attempted. In some cases a clear answer may not be available to the recording clinician.
+|at0002 + 
+ `date_of_cpr_decision`| 0..1| DV_DATE_TIME | Date of CPR decision
 |
-// Not supported rmType PARTY_PROXY
 |====
 == 5. Capacity for involvement
 === Mental capacity
 ===== `EVALUATION: _openEHR-EHR-EVALUATION.mental_capacity.v0_`
-[options="header", cols="3,3,5,5,30"]
+===== RM attributes
+[options="header", cols="5,3,5,5,30"]
 |====
 |NodeId|Attr.|RM Type| Name | Description
-|at0009| 0..1| DV_TEXT | Decision/plan
+|RM: + 
+ `language`| 1..1| CODE_PHRASE | language
+|
+|RM: + 
+ `encoding`| 1..1| CODE_PHRASE | encoding
+|
+|RM: + 
+ `subject`| 1..1| PARTY_PROXY | subject
+|
+|====
+===== _Participations_ [0..*]
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|RM: function|1..1|DV_TEXT| Role | The function of the Party in this participation
+|RM: performer|1..1|PARTY_IDENTIFIED| Performer name and ID | The id and possibly demographic system link of the party participating in the activity.
+|====
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|at0009 + 
+ `decision_plan`| 0..1| DV_TEXT | Decision/plan
 a|
-|at0002| 0..1| DV_CODED_TEXT | Does the person have capacity to participate in making recommendations on this plan?
+
+
+Description of the specific decision or plan to which the mental capacity status and assessment details relate.
+|at0002 + 
+ `does_the_person_have_capacity_to_participate_in_making_recommendations_on_this_plan`| 0..1| DV_CODED_TEXT | Does the person have capacity to participate in making recommendations on this plan?
 a|
 * at0003 -> Has capacity 
 * at0004 -> Does not have capacity 
-|at0006| 0..1| DV_TEXT | If no, in what way does this person lack capacity?
+
+
+The individual's mental capacity status.
+|at0006 + 
+ `if_no_in_what_way_does_this_person_lack_capacity`| 0..1| DV_TEXT | If no, in what way does this person lack capacity?
 a|
-// Not supported rmType PARTY_PROXY
+
+
+Narrative description of the individual's mental capacity.
 |====
 == 6. Involvement in making plan
 === ReSPECT involvement
 ===== `ADMIN_ENTRY: _openEHR-EHR-ADMIN_ENTRY.respect_involvement.v0_`
-[options="header", cols="3,3,5,5,30"]
+===== RM attributes
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|RM: + 
+ `language`| 1..1| CODE_PHRASE | language
+|
+|RM: + 
+ `encoding`| 1..1| CODE_PHRASE | encoding
+|
+|RM: + 
+ `subject`| 1..1| PARTY_PROXY | subject
+|
+|====
+===== _Participations_ [0..*]
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|RM: function|1..1|DV_TEXT| Role | The function of the Party in this participation
+|RM: performer|1..1|PARTY_IDENTIFIED| Performer name and ID | The id and possibly demographic system link of the party participating in the activity.
+|====
+[options="header", cols="5,3,5,5,30"]
 |====
 |NodeId|Attr.|RM Type| Name | Description
 5+a|*Involvement in recommendations* +
  `CLUSTER: _at0012_`
-|at0002| 0..*| DV_CODED_TEXT | Involvement
+|at0002 + 
+ `involvement`| 0..*| DV_CODED_TEXT | Involvement
 a|
 * at0003 -> A Person has mental capacity 
 * at0004 -> B Person does not have mental capacity 
 * at0005 -> C1 Person less than 18 or 16 with sufficient maturity 
 * at0010 -> C2 Person less than 18 or 16 without sufficient maturity 
 * at0011 -> C3 Person less than 18 or 16 parental decision 
-|at0007| 0..1| DV_TEXT | Option D
+
+
+Details of involvement in making this plan.
+|at0007 + 
+ `option_d`| 0..1| DV_TEXT | Option D
 a|
 
 
-Additional implementation guidance: in an electronic format, if someone selects D we could have a line coming up explaining that the only legal reasons for selecting D are:
+Description of reason for not selecting Options A, B or C or where C1 or C2 is selected without selecting C3.
+
+
+Comment: Additional implementation guidance: in an electronic format, if someone selects D we could have a line coming up explaining that the only legal reasons for selecting D are:
 1. if the physician thinks it would cause the patient physiological or psychological harm
 2. if the patient lacks capacity, and it is not practicable or appropriate to contact those close to them.
 If C1 or C2 has been selected without selecting C3, please document why involvement of those holding parental responsibility has not been possible.
-// Not supported rmType PARTY_PROXY
 |====
 == 7. Clinician signatures
 === Clinician signature
 ===== `ACTION: _openEHR-EHR-ACTION.service.v0_`
-[options="header", cols="3,3,5,5,30"]
+===== RM attributes
+[options="header", cols="5,3,5,5,30"]
 |====
 |NodeId|Attr.|RM Type| Name | Description
-|RM: current_state| 1..1| DV_CODED_TEXT | Current_state
+|RM: + 
+ `current_state`| 1..1| DV_CODED_TEXT | Current_state
 a|
 * 532 -> undefined 
-|RM: transition| 0..1| DV_CODED_TEXT | Transition
+
+
+
+|RM: + 
+ `transition`| 0..1| DV_CODED_TEXT | Transition
 a|
-|RM: careflow_step| 0..1| DV_CODED_TEXT | Careflow_step
+|RM: + 
+ `careflow_step`| 0..1| DV_CODED_TEXT | Careflow_step
 a|
 * at0005 -> Service activity complete 
-|at0011| 0..1| DV_TEXT | Service name
+
+
+
+|RM: + 
+ `time`| 1..1| DV_DATE_TIME | Time
+|
+
+
+Comment: undefined
+|RM: + 
+ `language`| 1..1| CODE_PHRASE | language
+|
+|RM: + 
+ `encoding`| 1..1| CODE_PHRASE | encoding
+|
+|RM: + 
+ `subject`| 1..1| PARTY_PROXY | subject
+|
+|====
+===== _Participations_ [0..*]
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|RM: function|1..1|DV_TEXT| Role | The function of the Party in this participation
+|RM: performer|1..1|PARTY_IDENTIFIED| Performer name and ID | The id and possibly demographic system link of the party participating in the activity.
+|====
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|at0011 + 
+ `service_name`| 0..1| DV_TEXT | Service name
 a|
 * ReSPECT - clinician signature
 * ReSPECT - senior responsible clinician signature
 
 
-Coding of the specific service name with a terminology is preferred, where possible.
-|RM: time| 1..1| DV_DATE_TIME | Time
-|
+Identification of the clinical service to be/being carried out.
 
 
-
-// Not supported rmType PARTY_PROXY
+Comment: Coding of the specific service name with a terminology is preferred, where possible.
 |====
 == 8. Emergency contacts
 === Emergency contacts
 ===== `ADMIN_ENTRY: _openEHR-EHR-ADMIN_ENTRY.care_team.v0_`
-[options="header", cols="3,3,5,5,30"]
+===== RM attributes
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|RM: + 
+ `language`| 1..1| CODE_PHRASE | language
+|
+|RM: + 
+ `encoding`| 1..1| CODE_PHRASE | encoding
+|
+|RM: + 
+ `subject`| 1..1| PARTY_PROXY | subject
+|
+|====
+===== _Participations_ [0..*]
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|RM: function|1..1|DV_TEXT| Role | The function of the Party in this participation
+|RM: performer|1..1|PARTY_IDENTIFIED| Performer name and ID | The id and possibly demographic system link of the party participating in the activity.
+|====
+[options="header", cols="5,3,5,5,30"]
 |====
 |NodeId|Attr.|RM Type| Name | Description
 5+a|*Care team* +
  `CLUSTER: _openEHR-EHR-CLUSTER.care_team.v0_`
-|at0018| 0..1| DV_TEXT | Name
+|at0018 + 
+ `name`| 0..1| DV_TEXT | Name
 a|
 * ReSPECT Emergency contacts
 
 
-E.g. the "red" vs. "green" trauma teams.
+A label for human use intended to distinguish like teams.
+
+
+Comment: E.g. the "red" vs. "green" trauma teams.
 5+a|*Participant* +
  `CLUSTER: _at0021_`
-|at0022| 0..*| DV_TEXT | Role and Relationship
+|at0022 + 
+ `role_and_relationship`| 0..*| DV_TEXT | Role and Relationship
 a|
 * Primary emergency contact
 * _Other text allowed_
+
+
+Indicates specific responsibility of an individual within the care team, such as "Primary care physician", "Trained social worker counselor", "Caregiver", etc.
 5+a|*Member* +
  `CLUSTER: _openEHR-EHR-CLUSTER.contact_cc.v0_`
 5+a|*Name* +
  `CLUSTER: _openEHR-EHR-CLUSTER.name_cc.v0_`
-|at0001| 1..1| DV_CODED_TEXT | Use
+|at0001 + 
+ `use`| 1..1| DV_CODED_TEXT | Use
 a|
 * at0002 -> Usual 
-|at0009| 0..1| DV_TEXT | Contact name
+
+
+Identification of the purpose for the name.
+|at0009 + 
+ `contact_name`| 0..1| DV_TEXT | Contact name
 a|
+
+
+A text representation of the full name.
 5+a|*Telephone* +
  `CLUSTER: _openEHR-EHR-CLUSTER.telecom_cc.v0_`
-|at0001| 0..1| DV_CODED_TEXT | System
+|at0001 + 
+ `system`| 0..1| DV_CODED_TEXT | System
 a|
 * at0012 -> Phone 
-|at0002| 0..1| DV_TEXT | Telephone number
+
+
+Telecommunications form for contact point - what communications system is required to make use of the contact.
+|at0002 + 
+ `telephone_number`| 0..1| DV_TEXT | Telephone number
 a|
-|at0030| 0..1| DV_TEXT | Other details about contact
+
+
+The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address).
+|at0030 + 
+ `other_details_about_contact`| 0..1| DV_TEXT | Other details about contact
 a|
-// Not supported rmType PARTY_PROXY
+
+
+Comments made about the participant.
 |====
 == 9. Review of Plan
 === Review of plan
 ===== `ACTION: _openEHR-EHR-ACTION.service.v0_`
-[options="header", cols="3,3,5,5,30"]
+===== RM attributes
+[options="header", cols="5,3,5,5,30"]
 |====
 |NodeId|Attr.|RM Type| Name | Description
-|RM: current_state| 1..1| DV_CODED_TEXT | Current_state
+|RM: + 
+ `current_state`| 1..1| DV_CODED_TEXT | Current_state
 a|
 * 532 -> undefined 
-|RM: transition| 0..1| DV_CODED_TEXT | Transition
+
+
+
+|RM: + 
+ `transition`| 0..1| DV_CODED_TEXT | Transition
 a|
-|RM: careflow_step| 0..1| DV_CODED_TEXT | Careflow_step
+|RM: + 
+ `careflow_step`| 0..1| DV_CODED_TEXT | Careflow_step
 a|
 * at0005 -> Service activity complete 
-|at0011| 0..1| DV_TEXT | Service name
-a|
 
 
-Coding of the specific service name with a terminology is preferred, where possible.
-|RM: time| 1..1| DV_DATE_TIME | Time
+
+|RM: + 
+ `time`| 1..1| DV_DATE_TIME | Time
 |
 
 
-
-// Not supported rmType PARTY_PROXY
+Comment: undefined
+|RM: + 
+ `language`| 1..1| CODE_PHRASE | language
+|
+|RM: + 
+ `encoding`| 1..1| CODE_PHRASE | encoding
+|
+|RM: + 
+ `subject`| 1..1| PARTY_PROXY | subject
+|
 |====
-// Not supported rmType PARTY_PROXY
+===== _Participations_ [0..*]
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|RM: function|1..1|DV_TEXT| Role | The function of the Party in this participation
+|RM: performer|1..1|PARTY_IDENTIFIED| Performer name and ID | The id and possibly demographic system link of the party participating in the activity.
+|====
+[options="header", cols="5,3,5,5,30"]
+|====
+|NodeId|Attr.|RM Type| Name | Description
+|at0011 + 
+ `service_name`| 0..1| DV_TEXT | Service name
+a|
+
+
+Identification of the clinical service to be/being carried out.
+
+
+Comment: Coding of the specific service name with a terminology is preferred, where possible.
+|====
