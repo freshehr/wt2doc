@@ -16,5 +16,7 @@ export function isDataValue(rmType: string) {
     'DV_QUANTITY',
     'DV_DATE',
     'DV_BOOLEAN',
+    'DV_IDENTIFIER',
+    'DV_DATE',
   ].includes(rmType);
 }
